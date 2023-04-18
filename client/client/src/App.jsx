@@ -7,7 +7,7 @@ function App() {
   const [server_data, setUsers] = useState([{}])
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api`).then(
+    fetch(`http://localhost:5000/users`).then(
       response => response.json()
      ).then(
       data => {
@@ -23,7 +23,7 @@ function App() {
         <p> loading </p>
       ): (
         server_data.users.map((user , i) => (
-          <p key={i}> {user} </p>
+          <p key={i}> {user.name} </p>
         ))
         
       )}
