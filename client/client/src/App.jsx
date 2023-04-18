@@ -4,21 +4,35 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [users, setUsers] = useState([{}])
+  const [server_data, setUsers] = useState([{}])
 
   useEffect(() => {
-    fetch("/api").then(response => response.json())
-      .then(data => {
-        setUsers(data); // set the 'users' state to the array of users
-      })
-      .catch(error => {
-        console.log("Error fetching users:", error);
-      });
-  }, []);
-  
-
+    fetch(`http://localhost:5000/api`).then(
+      response => response.json()
+     ).then(
+      data => {
+        setUsers(data)
+      }
+      )
+    }, []);
     
-  return <h1></h1>
+  console.log(server_data);
+  return (
+   <>
+      {(typeof server_data.users === 'undefined')?(
+        <p> loading </p>
+      ): (
+        server_data.users.map((user , i) => (
+          <p key={i}> {user} </p>
+        ))
+        
+      )}
+
+   </>
+
+  )
+  
+  
 }
 
 export default App
