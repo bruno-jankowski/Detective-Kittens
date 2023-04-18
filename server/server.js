@@ -28,12 +28,11 @@ app.post("/register", async (req, res) => {
     })
 
 app.post("/login", async (req, res) => {
-    const user = users.find(user => user.name = req.body.name)
-    console.log();
+    const user = users.find(user => user.name == req.body.name)
+    console.log(user);
     if (user == null) {
         return res.status(400).send('No user')
     }
-
     try {
         if(await bcrypt.compare(req.body.password, user.password)) {
             res.send('Success')
@@ -43,6 +42,7 @@ app.post("/login", async (req, res) => {
     } catch {
         res.status(500).send()
     }
+
 })
 
 app.listen(5000, () => {console.log("Server started on 5000");
