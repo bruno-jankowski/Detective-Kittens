@@ -20,6 +20,11 @@ app.post("/register", async (req, res) => {
         console.log(hashedPassword);
         console.log(salt);
         const user = { name: req.body.name, password: hashedPassword }
+        console.log(user);
+        const user_exist = users.find(user_exist => user_exist.name == req.body.name)
+        if (user_exist != null){
+            console.log("u are here");
+        }
         users.push(user)
         res.status(201).send()
         } catch {
