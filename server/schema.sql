@@ -25,3 +25,9 @@ INSERT INTO users (name, password)
 VALUES 
 ('user1', 'pass1'),
 ('user2', 'pass2');
+
+
+Comping up hot we got 
+
+DELETE FROM notes 
+WHERE id='1'

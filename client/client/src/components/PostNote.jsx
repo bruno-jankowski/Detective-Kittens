@@ -13,7 +13,7 @@ class PostNote extends Component {
     }
 
     changeHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.name]: e.target.value}) //updates the components of a state 
     }
 
     submitHandler = (e) => {
