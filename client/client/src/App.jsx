@@ -16,7 +16,20 @@ function App() {
       )
     }, []);
     
-  console.log(server_data);
+  const [notes, setNotes] = useState([{}])
+  
+    useEffect(() => {
+      fetch(`http://localhost:5000/notes`).then(
+        response => response.json()
+       ).then(
+        data => {
+          setNotes(data)
+        }
+        )
+      }, []);
+
+  console.log(notes);
+
   return (
    <>
       {(typeof server_data.users === 'undefined')?(
@@ -27,6 +40,13 @@ function App() {
         ))
         
       )}
+
+
+      {
+        notes.map(note => (
+          <p key={note.id}> <b> {note.title} </b> <span> {note.created}</span><br/> {note.contents} </p>
+        ))
+      }
 
    </>
 

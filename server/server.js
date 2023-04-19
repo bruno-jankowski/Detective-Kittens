@@ -16,6 +16,12 @@ app.get("/notes", async (req, res) => {
     res.send(notes)
 })
 
+app.get("/notes/:id", async (req, res) => {
+    const id = req.params.id
+    const note = await getNote(id)
+    res.send(note)
+})
+
 app.get("/users", (req, res) => {
     res.json({"users": users})
 })
