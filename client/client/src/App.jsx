@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import PostNote from './components/PostNote'
 
 function App() {
   const [server_data, setUsers] = useState([{}])
@@ -47,6 +48,8 @@ function App() {
           <p key={note.id}> <b> {note.title} </b> <span> {note.created}</span><br/> {note.contents} </p>
         ))
       }
+
+      <PostNote/>
 
    </>
 
