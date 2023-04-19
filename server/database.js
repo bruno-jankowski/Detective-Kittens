@@ -1,11 +1,13 @@
 import mysql from 'mysql2'
 import { pass } from './password_database.js';
+import dotenv from 'dotenv'
+dotenv.config()
 
 const pool = mysql.createPool({
-    host: '127.0.0.1',
-    user: 'root',
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
     password: pass,
-    database: 'notes_app',
+    database: process.env.MYSQL_DATABASE,
   }).promise()
 
 console.log(pass);
