@@ -12,13 +12,15 @@ class PostNote extends Component {
         }
     }
 
+    //this function handle change so it runs each time i type anything in the form so any time i click submit the state would be ready and all set 
     changeHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value}) //updates the components of a state 
+        this.setState({[e.target.name]: e.target.value}) //updates the values of a state based on name so the name of the form must match the state variable name and sets it then to the value
     }
 
     submitHandler = (e) => {
-        e.preventDefault()
+        //e.preventDefault() //It would prevent the submit button from reloading a page but it is just what i wanted so i will live it (in case of data that should be submitted but not refresh page use it)
         console.log(this.state);
+
         axios.post('http://localhost:5000/notes', this.state)
         .then(response => {
             console.log(response);
@@ -29,7 +31,7 @@ class PostNote extends Component {
     }
 
   render() {
-    const {title, contents} = this.state
+    const {title, contents} = this.state // i need to destructure my state here so i can use it in html components
     return (
         <div>
             <form onSubmit={this.submitHandler}>

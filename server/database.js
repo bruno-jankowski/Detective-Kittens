@@ -2,6 +2,10 @@ import mysql from 'mysql2'
 import { pass } from './password_database.js';
 import dotenv from 'dotenv'
 dotenv.config()
+//*In this file i make an API i guess for database to interact with backend which then interacts with frontend 
+//*I make async functions and export them to be used in server.js 
+//*This way server interacts only with Https and this file interacts only with database 
+
 
 const pool = mysql.createPool({
     host: process.env.MYSQL_HOST,

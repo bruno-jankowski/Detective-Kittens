@@ -45,7 +45,7 @@ function App() {
 
       {
         notes.map(note => (
-          <p key={note.id}> <b> {note.title} </b> <span> {note.created}</span><br/> {note.contents} </p>
+          <p key={note.id}> <b> {note.title} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p>
         ))
       }
 
