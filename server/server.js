@@ -22,6 +22,12 @@ app.get("/notes/:id", async (req, res) => {
     res.send(note)
 })
 
+app.post("/notes", async (req, res) => {
+    const {title, contents} = req.body 
+    const note = await createNote(title, contents)
+    res.status(200).send(note)
+})
+
 app.get("/users", (req, res) => {
     res.json({"users": users})
 })
