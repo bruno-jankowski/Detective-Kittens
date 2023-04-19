@@ -29,6 +29,14 @@ const pool = mysql.createPool({
     `, [id])
     return rows[0]
   }
+  
+  export async function deleteNote(id) {
+    const [rows] = await pool.query(`
+    DELETE FROM notes 
+    WHERE id= ?
+    `, [id])
+    return rows[0]
+  }
 
   export async function createNote(title, contents) {
     const [result] = await pool.query(`

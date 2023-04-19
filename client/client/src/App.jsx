@@ -45,7 +45,10 @@ function App() {
 
       {
         notes.map(note => (
-          <p key={note.id}> <b> {note.title} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p>
+          <div>
+            <p key={note.id}> <b> {note.title} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p>
+            <button type='submit'> {note.id}</button>
+          </div>
         ))
       }
 
