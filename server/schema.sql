@@ -12,3 +12,16 @@ INSERT INTO notes (title, contents)
 VALUES 
 ('My First Note', 'A note about something'),
 ('My Second Note', 'A note about something else');
+
+
+USE notes_app;
+
+CREATE TABLE users (
+  name VARCHAR(255) NOT NULL,
+  password TEXT NOT NULL
+);
+
+INSERT INTO users (name, password)
+VALUES 
+('user1', 'pass1'),
+('user2', 'pass2');
