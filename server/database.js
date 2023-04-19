@@ -10,9 +10,19 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
   }).promise()
 
-console.log(pass);
 
-const result = await pool.query("select * from notes")
-const rows = result[0] //first item in pool is rows
-console.log(rows)
-  
+  async function getNote(id) {
+    const [rows] = await pool.query(`
+    SELECT * 
+    FROM notes
+    WHERE id = ? 
+    `, [id])
+    return rows[0]
+  }
+
+  async function createNote(title, content) {
+    await pool.query(`
+    INSERT INTO notes (title, content)
+    VALUES (?, ?)
+    `, [title, content])
+  }
