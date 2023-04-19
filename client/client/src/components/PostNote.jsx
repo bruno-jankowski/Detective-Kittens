@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+ //to create this rce
 
 class PostNote extends Component {
     constructor(props) {
-        super(props)
+        super(props) //boiler plate code
 
-        this.state = {
+        this.state = { // state then sets what will this contain and what will it affect (thing whether u nned thgis to be in the backend)
             title: '', 
             contents: '', 
         }
@@ -17,6 +19,13 @@ class PostNote extends Component {
     submitHandler = (e) => {
         e.preventDefault()
         console.log(this.state);
+        axios.post('http://localhost:5000/notes', this.state)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }
 
   render() {
