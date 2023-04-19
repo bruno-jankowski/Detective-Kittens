@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import PostNote from './components/PostNote'
+import DeleteNote from './components/DeleteNote'
 
 function App() {
   const [server_data, setUsers] = useState([{}])
@@ -46,8 +47,8 @@ function App() {
       {
         notes.map(note => (
           <div>
-            <p key={note.id}> <b> {note.title} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p>
-            <button type='submit'> {note.id}</button>
+            <p key={note.id}> <b> {note.title} {note.id} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p>
+            <DeleteNote id={note.id}></DeleteNote>
           </div>
         ))
       }
