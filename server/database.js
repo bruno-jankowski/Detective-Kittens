@@ -1,8 +1,12 @@
-const mysql = require('mysql')
+import mysql from 'mysql2'
 
-mysql.createPool({
+const pool = mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
-    password: '', 
-    database: 'notes_app'
-})
+    password: '#####',
+    database: 'notes_app',
+  }).promise()
+
+const result = await pool.query("select * from notes")
+console.log(result)
+  
