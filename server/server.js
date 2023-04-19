@@ -1,14 +1,20 @@
-const express = require('express')
-const cors = require('cors')
-const bcrypt = require('bcrypt')
+import express, { json } from 'express'
+import cors from 'cors'
+import { genSalt, hash, compare } from 'bcrypt'
+import {getNotes, getNote, createNote} from './database.js'
 
 
 const app = express()
 
-app.use(express.json())
+app.use(json())
 app.use(cors());
 
 const users = []
+
+app.get("/notes", async (req, res) => {
+    const notes = await getNotes()
+    res.send(notes)
+})
 
 app.get("/users", (req, res) => {
     res.json({"users": users})
@@ -16,8 +22,8 @@ app.get("/users", (req, res) => {
 
 app.post("/register", async (req, res) => {
     try {
-        const salt = await bcrypt.genSalt()
-        const hashedPassword = await bcrypt.hash(req.body.password, salt)
+        const salt = await genSalt()
+        const hashedPassword = await hash(req.body.password, salt)
         console.log(hashedPassword);
         console.log(salt);
         const user = { name: req.body.name, password: hashedPassword }
@@ -40,7 +46,7 @@ app.post("/login", async (req, res) => {
         return res.status(400).send('No user')
     }
     try {
-        if(await bcrypt.compare(req.body.password, user.password)) {
+        if(await compare(req.body.password, user.password)) {
             res.send('Success')
         } else {
             res.send('Failed')
