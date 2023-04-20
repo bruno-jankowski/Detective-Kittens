@@ -9,7 +9,6 @@ const app = express()
 app.use(json())
 app.use(cors());
 
-const users = []
 
 app.get("/notes", async (req, res) => {
     const notes = await getNotes()

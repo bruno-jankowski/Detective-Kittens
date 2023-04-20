@@ -4,9 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import PostNote from './components/PostNote'
 import DeleteNote from './components/DeleteNote'
+import LoginForm from './components/LoginForm'
 
 function App() {
-  const [server_data, setUsers] = useState([{}])
+  const [users, setUsers] = useState([{}])
 
   useEffect(() => {
     fetch(`http://localhost:5000/users`).then(
@@ -34,10 +35,10 @@ function App() {
 
   return (
    <>
-      {(typeof server_data.users === 'undefined')?(
+      {(typeof users === 'undefined')?(
         <p> loading </p>
       ): (
-        server_data.users.map((user , i) => (
+        users.map((user , i) => (
           <p key={i}> {user.name} </p>
         ))
         
@@ -54,6 +55,7 @@ function App() {
       }
 
       <PostNote/>
+      <LoginForm/>
 
    </>
 
