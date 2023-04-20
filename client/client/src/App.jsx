@@ -7,6 +7,8 @@ import DeleteNote from './components/DeleteNote'
 import LoginForm from './components/LoginForm'
 
 function App() {
+  const [isLogged, setLogged] = useState('not')
+
   const [users, setUsers] = useState([{}])
 
   useEffect(() => {

@@ -71,12 +71,12 @@ app.post("/login", async (req, res) => {
     }
     try {
         if(await compare(req.body.password, user.password)) {
-            res.send('Success')
+            res.status(200).send('Success')
         } else {
-            res.send('Failed')
+            res.status(400).send('Failed')
         }
     } catch {
-        res.status(500).send()
+        res.status(400).send()
     }
 
 })
