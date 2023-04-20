@@ -10,7 +10,7 @@ dotenv.config()
 const pool = mysql.createPool({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
-    password: pass,
+    password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
   }).promise()
 
@@ -29,12 +29,12 @@ const pool = mysql.createPool({
   }
 
   export async function getUser(username){
-    const [[rows]] = await pool.query(`
+    const [rows] = await pool.query(`
     SELECT * 
     FROM users
     WHERE name = ?
     `, [username])
-    return rows
+    return rows[0]
   }
 
   export async function getNote(id) {
@@ -71,5 +71,4 @@ const pool = mysql.createPool({
     return result.name
   }
 
-  const result = await getNotes()
-  console.log(result);
+  
