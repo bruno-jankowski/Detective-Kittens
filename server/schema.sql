@@ -17,6 +17,7 @@ VALUES
 USE notes_app;
 
 CREATE TABLE users (
+  id integer PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   password TEXT NOT NULL
 );
@@ -31,3 +32,6 @@ Comping up hot we got
 
 DELETE FROM notes 
 WHERE id='1'
+
+DELETE FROM users 
+WHERE name='bruno';

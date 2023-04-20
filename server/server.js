@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, checkUser} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser} from './database.js'
 
 
 const app = express()
@@ -46,15 +46,15 @@ app.post("/register", async (req, res) => {
         
         const user = { name: req.body.name, password: hashedPassword}
 
-        const user_exist = await checkUser(user.name)
+        const user_exist = await getUser(user.name)
         console.log(user_exist);
         if (user_exist != undefined){
-                res.status(500).send("u are here");
-            } else{
-                await createUser(user.name, user.password) 
-                //push(user) //add user
-                res.status(201).send('Success')
-            }
+              return res.status(500).send("u are here");
+            } 
+
+        await createUser(user.name, user.password) 
+        //push(user) //add user
+        res.status(201).send('Success')    
 
         } catch {
             res.status(500).send()
@@ -62,9 +62,12 @@ app.post("/register", async (req, res) => {
     })
 
 app.post("/login", async (req, res) => {
-    const user = users.find(user => user.name == req.body.name)
-    console.log(user);
-    if (user == null) {
+    const user = await getUser(req.body.name)
+
+    //console.log(req.body.name);
+    //console.log(user);
+
+    if (user == undefined) {
         return res.status(400).send('No user')
     }
     try {

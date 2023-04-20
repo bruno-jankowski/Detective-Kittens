@@ -9,7 +9,7 @@ POST http://localhost:5000/register
 Content-Type: application/json
 
 {
-    "name": "nie nie bruno",
+    "name": "misia",
     "password": "pass"
 }
 
@@ -34,5 +34,5 @@ Content-Type: application/json
 
 {
     "name": "bruno",
-    "password": "pass"
+    "password": "pass1"
 }

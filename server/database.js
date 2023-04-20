@@ -28,7 +28,7 @@ const pool = mysql.createPool({
     return rows
   }
 
-  export async function checkUser(username){
+  export async function getUser(username){
     const [[rows]] = await pool.query(`
     SELECT * 
     FROM users
