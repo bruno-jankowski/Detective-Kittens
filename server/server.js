@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, deleteNote} from './database.js'
+import {getNotes, getNote, createNote, deleteNote, getUsers} from './database.js'
 
 
 const app = express()
@@ -34,8 +34,9 @@ app.post("/notes", async (req, res) => {
     res.status(200).send(note)
 })
 
-app.get("/users", (req, res) => {
-    res.json({"users": users})
+app.get("/users", async (req, res) => {
+    const users = await getUsers()
+    res.send(users)
 })
 
 app.post("/register", async (req, res) => {
