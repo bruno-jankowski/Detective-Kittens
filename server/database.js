@@ -54,5 +54,13 @@ const pool = mysql.createPool({
     return getNote(id)
   }
 
+  export async function createUser(name, password) {
+    const [result] = await pool.query(`
+    INSERT INTO users (name, password)
+    VALUES (?, ?)
+    `, [name, password])
+    return result.name
+  }
+
   const result = await getNotes()
   console.log(result);
