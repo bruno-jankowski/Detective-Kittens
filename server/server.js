@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, checkUser} from './database.js'
 
 
 const app = express()
@@ -45,15 +45,17 @@ app.post("/register", async (req, res) => {
         const hashedPassword = await hash(req.body.password, salt)
         
         const user = { name: req.body.name, password: hashedPassword}
-        
-        /*const user_exist = users.find(user_exist => user_exist.name == req.body.name)
-        
-        if (user_exist != null){
-            console.log("u are here");
-        }*/
 
-        await createUser(user.name, user.password) //push(user) //add user
-        res.status(201).send('Success')
+        const user_exist = await checkUser(user.name)
+        console.log(user_exist);
+        if (user_exist != undefined){
+                res.status(500).send("u are here");
+            } else{
+                await createUser(user.name, user.password) 
+                //push(user) //add user
+                res.status(201).send('Success')
+            }
+
         } catch {
             res.status(500).send()
         }
