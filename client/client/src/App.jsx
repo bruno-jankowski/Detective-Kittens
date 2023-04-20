@@ -5,6 +5,7 @@ import './App.css'
 import PostNote from './components/PostNote'
 import DeleteNote from './components/DeleteNote'
 import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
 
 function App() {
   const [isLogged, setLogged] = useState('not')
@@ -57,7 +58,17 @@ function App() {
       }
 
       <PostNote/>
-      <LoginForm/>
+      <table>
+          <td>
+            <LoginForm/> 
+          </td>
+          <td>
+            <h1></h1>
+          </td>
+          <td>
+            <RegisterForm/>
+          </td>
+      </table>
 
    </>
 
