@@ -30,7 +30,7 @@ app.delete("/notes/:id", async (req, res) => {
 
 app.post("/notes", async (req, res) => {
     const {title, contents} = req.body 
-    const note = await createNote(title, contents)
+    const note = await createNote(title, contents, currentUser)
     res.status(200).send(note)
 })
 
@@ -72,7 +72,8 @@ app.post("/login", async (req, res) => {
     }
     try {
         if(await compare(req.body.password, user.password)) {
-            currentUser = user;
+            currentUser = user.name;
+            console.log(currentUser);
             res.status(200).send(user)
         } else {
             res.status(400).send('Failed')

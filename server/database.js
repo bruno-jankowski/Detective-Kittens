@@ -14,6 +14,14 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
   }).promise()
 
+  export async function getUserNotes(user) {
+    const [rows] = await pool.query(`
+    SELECT * 
+    FROM notes
+    WHERE user = ?`, [user])
+    return rows
+  }
+
   export async function getNotes() {
     const [rows] = await pool.query(`
     SELECT * 
@@ -54,11 +62,11 @@ const pool = mysql.createPool({
     return rows[0]
   }
 
-  export async function createNote(title, contents) {
+  export async function createNote(title, contents, user) {
     const [result] = await pool.query(`
-    INSERT INTO notes (title, contents)
-    VALUES (?, ?)
-    `, [title, contents])
+    INSERT INTO notes (title, contents, user)
+    VALUES (?, ?, ?)
+    `, [title, contents, user])
     const id = result.insertId
     return getNote(id)
   }
