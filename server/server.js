@@ -12,6 +12,10 @@ app.use(cors());
 let currentUser = null;
 console.log(currentUser);
 
+app.get("/currentUser", async (req, res) => {
+    res.send(JSON.stringify(currentUser))
+})
+
 app.get("/notes", async (req, res) => {
     const notes = await getNotes()
     res.send(notes)

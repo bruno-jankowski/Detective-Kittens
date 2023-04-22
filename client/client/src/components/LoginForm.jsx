@@ -1,13 +1,13 @@
 import React, { useState, Component } from 'react'
 import axios from 'axios'
+
 class LoginForm extends Component {
   constructor(props) {
     super(props) //boiler plate code
 
     this.state = { // state then sets what will this contain and what will it affect (thing whether u nned thgis to be in the backend)
         name: '', 
-        password: '', 
-        isLogged: 'not logged', //i can add aditional values because the server gets only the values it needs from this.state
+        password: '',  //i can add aditional values because the server gets only the values it needs from this.state
     };
 
 }
@@ -22,13 +22,10 @@ submitHandler = (e) => {
     e.preventDefault() //It would prevent the submit button from reloading a page but it is just what i wanted so i will live it (in case of data that should be submitted but not refresh page use it)
     console.log(this.state);
     //to sebd only part of data
-    const { name, password } = e.target.elements;
-
     axios.post('http://localhost:5000/login', this.state)
     .then(response => {
-        this.setState({name: '', password: '', isLogged: 'logged' });
+        this.setState({name: '', password: ''})
         this.props.handleLoginResponse(response);
-        
     })
     .catch(error => {
         console.log(error);
@@ -53,7 +50,6 @@ return (
 
             <button type='submit'> Log in</button>
         </form>
-        <b> {this.state.isLogged} </b> 
     </div>
 )
 }

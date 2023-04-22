@@ -4,10 +4,9 @@ import RegisterForm from '../components/RegisterForm'
 
 
 function Login() {
-
     const handleLoginResponse = (response) => {
-        console.log('worked one');
-        props.handleLoginResponse(response);
+            console.log('worked one');
+            props.handleLoginResponse(response);
         }
         
         return (

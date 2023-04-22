@@ -4,13 +4,23 @@ import Notes from './pages/Notes'
 import Login from './pages/Login'
 import Users from './pages/Users'
 import { Route, Routes, Link} from 'react-router-dom'
-
+import {Navigate, useNavigate} from "react-router-dom"
 
 function App() {
-  const [isLogged, setLogged] = useState('not')
   const [currentUser, setCurrentUser] = useState(null)
 
-  console.log(currentUser);
+  useEffect(() => {
+    fetch(`http://localhost:5000/currentUser`).then(
+      response => response.json()
+      ).then(
+      data => {
+        setCurrentUser(data)
+      }
+      )
+    }, []);
+
+    
+  
 
   const handleLoginResponse = (response) => {
     console.log('worked');
@@ -25,14 +35,16 @@ function App() {
             <li> 
                 <Link to="/users"> Users</Link>
             </li>
-            <li> 
+            { currentUser != null && ( <li> 
                <Link to="/notes"> Notes</Link> 
-            </li>
+            </li>)}
+            
             <li> 
                 <Link to="/"> Home</Link>
             </li>
         </ul>
       </nav>
+    <h1> {currentUser} </h1>
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       <Route path='/notes' element={<Notes/>}/> 
