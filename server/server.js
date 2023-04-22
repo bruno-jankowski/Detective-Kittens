@@ -9,6 +9,7 @@ const app = express()
 app.use(json())
 app.use(cors());
 
+let currentUser = null;
 
 app.get("/notes", async (req, res) => {
     const notes = await getNotes()
@@ -71,6 +72,7 @@ app.post("/login", async (req, res) => {
     }
     try {
         if(await compare(req.body.password, user.password)) {
+            currentUser = user;
             res.status(200).send(user)
         } else {
             res.status(400).send('Failed')
