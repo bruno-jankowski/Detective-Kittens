@@ -22,7 +22,7 @@ app.get("/notes/user", async (req, res) => {
         const notes = await getUserNotes(currentUser)
         res.send(notes)
     } else {
-        res.status(400).send("not logged in")
+        res.status(400)
     }
 
 })
@@ -36,8 +36,12 @@ app.get("/notes/:id", async (req, res) => {
 
 app.delete("/notes/:id", async (req, res) => {
     const id = req.params.id
-    const note = await deleteNote(id)
-    res.send(note)
+    if(id != 'undefined'){
+        const note = await deleteNote(id)
+        res.send(note)
+    } else {
+        res.status(400)
+    }
 })
 
 app.post("/notes", async (req, res) => {
