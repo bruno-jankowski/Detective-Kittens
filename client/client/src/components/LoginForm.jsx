@@ -39,17 +39,18 @@ render() {
 const {name, password} = this.state // i need to destructure my state here so i can use it in html components
 return (
     <div>
-      <h2> Login to your account </h2>
-        <form onSubmit={this.submitHandler}>
+        
+        <form onSubmit={this.submitHandler} className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
+            <h2> Login to your account </h2>
             <div>
-                <input type='text' name='name' value={name} onChange={this.changeHandler}/>
+                <input type='text' className="form-control my-3" aria-describedby="emailHelp" name='name' value={name} onChange={this.changeHandler}/>
             </div>
 
             <div>
-                <input type='password' name='password' value={password} onChange={this.changeHandler}/>
+                <input type='password' name='password' className="form-control my-3" value={password} onChange={this.changeHandler}/>
             </div>
 
-            <button type='submit'> Log in</button>
+            <button type='submit' className='btn btn-primary'> Log in</button>
         </form>
     </div>
 )
