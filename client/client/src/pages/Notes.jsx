@@ -15,16 +15,26 @@ function Notes() {
         )
       }, []);
   
+    
     return (
      <>
         { notes.length > 0 && (
             <>
             <h1> {notes[0].user} Notes</h1>
             {notes.map((note, i) => (
-              <div key={i}>
-                <p> <b> {note.title} {note.id} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p> 
-                <span><DeleteNote id={note.id}></DeleteNote></span>
+              <div className="card text-center p-2 w-50 mx-auto justify-content-center rounded">
+              <div className="card-header">
+                Note {i + 1}
               </div>
+              <div className="card-body">
+                <h5 className="card-title"> {note.title}</h5>
+                <p className="card-text"> {note.contents}</p>
+                <DeleteNote id={note.id}/>
+              </div>
+              <div className="card-footer text-body-secondary">
+                {note.created}
+              </div>
+            </div>
             ))}
             </>
         )
