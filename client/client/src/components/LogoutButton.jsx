@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export class LogoutButton extends Component {
     constructor(props){
@@ -15,7 +16,7 @@ export class LogoutButton extends Component {
         .catch(error => {
             console.log(error);
         })
-        window.location.href("/");
+        window.location.href = '/'
     }
 
   render() {
