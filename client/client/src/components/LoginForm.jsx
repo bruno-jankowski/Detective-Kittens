@@ -26,6 +26,7 @@ submitHandler = (e) => {
     axios.post('http://localhost:5000/login', this.state)
     .then(response => {
         console.log(response);
+        this.props.handleLoginResponse(response);
         this.setState({name: '', password: '', isLogged: 'logged' });
         
     })

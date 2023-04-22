@@ -36,6 +36,12 @@ function App() {
 
   console.log(notes);
 
+
+  const handleLoginResponse = (response) => {
+    console.log('worked');
+    console.log(response);
+  }
+
   return (
    <>
       {(typeof users === 'undefined')?(
@@ -60,7 +66,7 @@ function App() {
       <PostNote/>
       <table>
           <td>
-            <LoginForm/> 
+            <LoginForm handleLoginResponse={handleLoginResponse}/> 
           </td>
           <td>
             <h1></h1>
