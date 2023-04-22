@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Users from './pages/Users'
 import { Route, Routes, Link} from 'react-router-dom'
 import {Navigate, useNavigate} from "react-router-dom"
+import LogoutButton from './components/LogoutButton'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -19,6 +20,7 @@ function App() {
       )
     }, []);
 
+  
     
   
 
@@ -45,6 +47,7 @@ function App() {
         </ul>
       </nav>
     <h1> {currentUser} </h1>
+    { currentUser != null && <LogoutButton/>}
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       <Route path='/notes' element={<Notes/>}/> 

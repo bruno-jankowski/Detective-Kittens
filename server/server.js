@@ -16,6 +16,10 @@ app.get("/currentUser", async (req, res) => {
     res.send(JSON.stringify(currentUser))
 })
 
+app.get("/logout", async (req, res) => {
+    currentUser = null;
+})
+
 app.get("/notes", async (req, res) => {
     const notes = await getNotes()
     res.send(notes)
