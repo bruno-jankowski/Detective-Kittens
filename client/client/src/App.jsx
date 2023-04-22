@@ -39,7 +39,7 @@ function App() {
 
   const handleLoginResponse = (response) => {
     console.log('worked');
-    console.log(response);
+    console.log(response.data);
   }
 
   return (

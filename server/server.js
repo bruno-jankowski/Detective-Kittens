@@ -71,7 +71,7 @@ app.post("/login", async (req, res) => {
     }
     try {
         if(await compare(req.body.password, user.password)) {
-            res.status(200).send('Success')
+            res.status(200).send(user)
         } else {
             res.status(400).send('Failed')
         }
