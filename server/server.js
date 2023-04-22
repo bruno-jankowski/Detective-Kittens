@@ -10,6 +10,7 @@ app.use(json())
 app.use(cors());
 
 let currentUser = null;
+console.log(currentUser);
 
 app.get("/notes", async (req, res) => {
     const notes = await getNotes()

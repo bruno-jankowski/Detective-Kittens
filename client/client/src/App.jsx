@@ -7,6 +7,7 @@ import DeleteNote from './components/DeleteNote'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 
+
 function App() {
   const [isLogged, setLogged] = useState('not')
   const [currentUser, setCurrentUser] = useState('not logged')
@@ -25,15 +26,15 @@ function App() {
     
   const [notes, setNotes] = useState([{}])
   
-    useEffect(() => {
-      fetch(`http://localhost:5000/notes/user`).then(
-        response => response.json()
-       ).then(
-        data => {
-          setNotes(data)
-        }
-        )
-      }, []);
+  useEffect(() => {
+    fetch(`http://localhost:5000/notes/user`).then(
+      response => response.json()
+      ).then(
+      data => {
+        setNotes(data)
+      }
+      )
+    }, []);
 
   const handleLoginResponse = (response) => {
     console.log('worked');

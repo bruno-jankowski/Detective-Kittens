@@ -19,7 +19,7 @@ changeHandler = (e) => {
 }
 
 submitHandler = (e) => {
-    e.preventDefault() //It would prevent the submit button from reloading a page but it is just what i wanted so i will live it (in case of data that should be submitted but not refresh page use it)
+    //e.preventDefault() //It would prevent the submit button from reloading a page but it is just what i wanted so i will live it (in case of data that should be submitted but not refresh page use it)
     console.log(this.state);
     //to sebd only part of data
 
