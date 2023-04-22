@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import PostNote from './components/PostNote'
-import DeleteNote from './components/DeleteNote'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import Notes from './pages/Notes'
+import Login from './pages/Login'
+import { Route, Routes } from 'react-router-dom'
 
 
 function App() {
@@ -18,17 +16,12 @@ function App() {
     console.log(response.data);
     setCurrentUser(response.data.name)
   }
-
-
-  console.log(currentUser);
   
   return (
-   <>
-      <h1> {currentUser} </h1>
-      <LoginForm handleLoginResponse={handleLoginResponse}/> 
-      <RegisterForm/>
-      <Notes/>
-   </>
+   <Routes>
+    <Route path='/' element={<><Login handleLoginResponse={handleLoginResponse}/> <Notes/> </>}>
+    </Route>
+   </Routes>
 
   )
   

@@ -15,16 +15,14 @@ function Notes() {
         )
       }, []);
   
-    console.log(notes);
-  
     return (
      <>
-  
+        <h1> {notes[0].user} Notes</h1>
         {
           notes.map((note, i) => (
-            <div>
-              <p key={i}> <b> {note.title} {note.id} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p>
-              <DeleteNote id={note.id}></DeleteNote>
+            <div key={i}>
+              <p> <b> {note.title} {note.id} </b> <span className='date'> {note.created}</span><br/> {note.contents} </p> 
+              <span><DeleteNote id={note.id}></DeleteNote></span>
             </div>
           ))
         }
