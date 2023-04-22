@@ -9,7 +9,7 @@ import RegisterForm from './components/RegisterForm'
 
 function App() {
   const [isLogged, setLogged] = useState('not')
-
+  const [currentUser, setCurrentUser] = useState('not logged')
   const [users, setUsers] = useState([{}])
 
   useEffect(() => {
@@ -40,6 +40,7 @@ function App() {
   const handleLoginResponse = (response) => {
     console.log('worked');
     console.log(response.data);
+    setCurrentUser(response.data.name)
   }
 
   return (
@@ -53,6 +54,7 @@ function App() {
         
       )}
 
+      <h1> {currentUser} </h1>
 
       {
         notes.map((note, i) => (
@@ -64,17 +66,10 @@ function App() {
       }
 
       <PostNote/>
-      <table>
-          <td>
-            <LoginForm handleLoginResponse={handleLoginResponse}/> 
-          </td>
-          <td>
-            <h1></h1>
-          </td>
-          <td>
-            <RegisterForm/>
-          </td>
-      </table>
+      <LoginForm handleLoginResponse={handleLoginResponse}/> 
+      <RegisterForm/>
+          
+    
 
    </>
 

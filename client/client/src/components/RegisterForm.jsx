@@ -47,7 +47,7 @@ return (
                 <input type='password' name='password' value={password} onChange={this.changeHandler}/>
             </div>
 
-            <button type='submit'> Log in</button>
+            <button type='submit'> Register </button>
         </form>
     </div>
 )
