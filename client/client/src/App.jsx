@@ -9,7 +9,7 @@ import LogoutButton from './components/LogoutButton'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
-
+ 
   useEffect(() => {
     fetch(`http://localhost:5000/currentUser`).then(
       response => response.json()
@@ -50,7 +50,7 @@ function App() {
     { currentUser != null && <LogoutButton/>}
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
-      <Route path='/notes' element={<Notes/>}/> 
+      { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}
       <Route path='/users' element={<Users/>}/>
     </Routes>
     </>

@@ -30,7 +30,7 @@ submitHandler = (e) => {
     .catch(error => {
         console.log(error);
     })
-    window.location.reload();
+    window.location.href = '/notes'
 }
 
 
