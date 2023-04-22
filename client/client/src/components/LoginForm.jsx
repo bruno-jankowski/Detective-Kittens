@@ -19,14 +19,15 @@ changeHandler = (e) => {
 }
 
 submitHandler = (e) => {
-    //e.preventDefault() //It would prevent the submit button from reloading a page but it is just what i wanted so i will live it (in case of data that should be submitted but not refresh page use it)
+    e.preventDefault() //It would prevent the submit button from reloading a page but it is just what i wanted so i will live it (in case of data that should be submitted but not refresh page use it)
     console.log(this.state);
     //to sebd only part of data
+    const { name, password } = e.target.elements;
 
     axios.post('http://localhost:5000/login', this.state)
     .then(response => {
-        this.props.handleLoginResponse(response);
         this.setState({name: '', password: '', isLogged: 'logged' });
+        this.props.handleLoginResponse(response);
         
     })
     .catch(error => {
