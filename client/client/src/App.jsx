@@ -12,6 +12,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState('not logged')
   const [users, setUsers] = useState([{}])
 
+
   useEffect(() => {
     fetch(`http://localhost:5000/users`).then(
       response => response.json()
@@ -25,7 +26,7 @@ function App() {
   const [notes, setNotes] = useState([{}])
   
     useEffect(() => {
-      fetch(`http://localhost:5000/notes`).then(
+      fetch(`http://localhost:5000/notes/user`).then(
         response => response.json()
        ).then(
         data => {
@@ -34,14 +35,15 @@ function App() {
         )
       }, []);
 
-  console.log(notes);
-
-
   const handleLoginResponse = (response) => {
     console.log('worked');
     console.log(response.data);
     setCurrentUser(response.data.name)
   }
+
+
+  console.log(currentUser);
+  console.log(notes);
 
   return (
    <>

@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes} from './database.js'
 
 
 const app = express()
@@ -15,6 +15,17 @@ app.get("/notes", async (req, res) => {
     const notes = await getNotes()
     res.send(notes)
 })
+
+app.get("/notes/user", async (req, res) => {
+    if(currentUser != null){
+        const notes = await getUserNotes(currentUser)
+        res.send(notes)
+    } else {
+        res.status(400).send("not logged in")
+    }
+
+})
+
 
 app.get("/notes/:id", async (req, res) => {
     const id = req.params.id
