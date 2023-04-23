@@ -5,7 +5,8 @@ import Login from './pages/Login'
 import Users from './pages/Users'
 import { Route, Routes, Link} from 'react-router-dom'
 import {Navigate, useNavigate} from "react-router-dom"
-import LogoutButton from './components/LogoutButton'
+
+import NavBar from './components/NavBar'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -32,22 +33,7 @@ function App() {
   
   return (
     <>
-    <nav>
-        <ul>
-            <li> 
-                <Link to="/users"> Users</Link>
-            </li>
-            { currentUser != null && ( <li> 
-               <Link to="/notes"> Notes</Link> 
-            </li>)}
-            
-            <li> 
-                <Link to="/"> Home</Link>
-            </li>
-        </ul>
-      </nav>
-    <h1> {currentUser} </h1>
-    { currentUser != null && <LogoutButton/>}
+    <NavBar currentUser={currentUser}></NavBar>
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}

@@ -23,7 +23,7 @@ export class LogoutButton extends Component {
     return (
       <div >
         <form>
-            <button onClick={this.deleteHandler} > Log Out </button>
+            <button className='btn btn-danger' onClick={this.deleteHandler} > Log Out </button>
         </form>
       </div>
     )
