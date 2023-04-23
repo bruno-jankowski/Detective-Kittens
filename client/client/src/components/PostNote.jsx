@@ -33,8 +33,8 @@ class PostNote extends Component {
   render() {
     const {title, contents} = this.state // i need to destructure my state here so i can use it in html components
     return (
-        <div>
-            <form onSubmit={this.submitHandler} className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
+        <div >
+            <form onSubmit={this.submitHandler} className='bg-dark p-2 w-50 mx-auto my-5 justify-content-center rounded '>
                 <div>
                     <input type='text' className="form-control my-3" name='title' value={title} onChange={this.changeHandler}/>
                 </div>
