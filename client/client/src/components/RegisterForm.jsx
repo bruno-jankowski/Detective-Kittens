@@ -24,7 +24,8 @@ submitHandler = (e) => {
 
     axios.post('http://localhost:5000/register', this.state)
     .then(response => {
-        console.log(response);
+        this.setState({name: '', password: ''})
+        this.props.handleLoginResponse(response);
     })
     .catch(error => {
         console.log(error);

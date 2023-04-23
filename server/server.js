@@ -76,9 +76,10 @@ app.post("/register", async (req, res) => {
               return res.status(500).send("u are here");
             } 
 
+        currentUser = user.name;
         await createUser(user.name, user.password) 
         //push(user) //add user
-        res.status(201).send('Success')    
+        res.status(201).send(user)    
 
         } catch {
             res.status(500).send()

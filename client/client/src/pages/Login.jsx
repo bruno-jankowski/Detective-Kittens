@@ -3,16 +3,12 @@ import LoginForm from '../components/LoginForm'
 import RegisterForm from '../components/RegisterForm'
 
 
-function Login() {
-    const handleLoginResponse = (response) => {
-            console.log('worked one');
-            props.handleLoginResponse(response);
-        }
+function Login(props) {
         
         return (
         <>
-            <LoginForm handleLoginResponse={handleLoginResponse}/> 
-            <RegisterForm/>
+            <LoginForm handleLoginResponse={props.handleLoginResponse}/> 
+            <RegisterForm handleLoginResponse={props.handleLoginResponse}/>
         </>
 
         )}
