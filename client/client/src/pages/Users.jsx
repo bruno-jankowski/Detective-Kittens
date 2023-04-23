@@ -18,8 +18,8 @@ function Users() {
         <p> loading </p>
       ): (
         users.map((user , i) => (
-          <div>
-          <p key={i}> {user.name} </p> 
+          <div key={i}>
+          <p> {user.name} </p> 
           <span> <button className='btn btn-primary' >add friend</button></span>
           </div>
         ))

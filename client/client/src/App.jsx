@@ -3,6 +3,7 @@ import './App.css'
 import Notes from './pages/Notes'
 import Login from './pages/Login'
 import Users from './pages/Users'
+import Alerts from './components/Alerts'
 import { Route, Routes, Link} from 'react-router-dom'
 import {Navigate, useNavigate} from "react-router-dom"
 
@@ -34,6 +35,7 @@ function App() {
   return (
     <>
     <NavBar currentUser={currentUser}></NavBar>
+    <Alerts scuccess={true} type={true} />
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}

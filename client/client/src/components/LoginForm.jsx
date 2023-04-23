@@ -25,7 +25,6 @@ submitHandler = (e) => {
     axios.post('http://localhost:5000/login', this.state)
     .then(response => {
         this.setState({name: '', password: ''})
-        console.log(response.status);
         this.props.handleLoginResponse(response);
         window.location.href = '/notes'
     })
