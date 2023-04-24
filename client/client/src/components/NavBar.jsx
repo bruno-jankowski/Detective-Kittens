@@ -18,20 +18,17 @@ export class NavBar extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                <Link className="nav-link active text-light" to="/users"> Other Users</Link> 
-                </li>
                 { this.props.currentUser != null && ( <li> 
                    <Link  className="nav-link active text-light" to="/notes"> Notes</Link> 
                 </li>)}
+                { this.props.currentUser != null && ( <li> 
+                   <Link  className="nav-link active text-light" to="/users"> users</Link> 
+                </li>)}
+                { this.props.currentUser != null && ( <li> 
+                   <Link  className="nav-link active text-light" to="/friends"> friends</Link> 
+                </li>)}
                 <li className="nav-item">
                 <Link className="nav-link active text-light" to="/"> Login</Link> 
-                </li>
-                <li className="nav-item">
-                <Link className="nav-link active text-light" to="/friends"> Friends</Link> 
-                </li>
-                <li className="nav-item">
-                { this.props.currentUser != null && <LogoutButton/>}
                 </li>
             </ul>
             <span className="navbar-text text-light">
