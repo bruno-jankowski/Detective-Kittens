@@ -15,6 +15,8 @@ function Users() {
       )
     }, []);
 
+    //get friends as []
+    //compare them with the users.name list  
     
   return (
     <div> 

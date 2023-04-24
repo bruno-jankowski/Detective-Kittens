@@ -30,6 +30,10 @@ export class NavBar extends Component {
                 <li className="nav-item">
                 <Link className="nav-link active text-light" to="/"> Login</Link> 
                 </li>
+                { this.props.currentUser != null && ( <li> 
+                   <LogoutButton/>
+                </li>)}
+                
             </ul>
             <span className="navbar-text text-light">
                 DeadMan Notes
