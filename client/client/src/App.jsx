@@ -35,7 +35,7 @@ function App() {
   return (
     <>
     <NavBar currentUser={currentUser}></NavBar>
-    <Alerts scuccess={true} type={true} />
+    <Alerts success={true} text={'loged in'} />
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}
