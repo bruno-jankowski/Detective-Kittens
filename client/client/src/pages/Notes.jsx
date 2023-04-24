@@ -3,8 +3,7 @@ import PostNote from '../components/PostNote'
 import DeleteNote from '../components/DeleteNote'
 
 function Notes() {
-    const [notes, setNotes] = useState([{}])
-  
+    const [notes, setNotes] = useState([{}])  
     useEffect(() => {
       fetch(`http://localhost:5000/notes/user`).then(
         response => response.json()
@@ -14,7 +13,7 @@ function Notes() {
         }
         )
       }, []);
-  
+      
     
     return (
      <>

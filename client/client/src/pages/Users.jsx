@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import AddUserButton from '../components/AddUserButton';
 
 function Users() {
    const [users, setUsers] = useState([{}])
@@ -20,7 +21,7 @@ function Users() {
         users.map((user , i) => (
           <div key={i}>
           <p> {user.name} </p> 
-          <span> <button className='btn btn-primary' >add friend</button></span>
+          <AddUserButton name={user.name}/>
           </div>
         ))
         
