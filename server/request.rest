@@ -2,6 +2,9 @@ GET http://localhost:5000/users
 
 ###
 
+GET http://localhost:5000/friends/bruno
+
+###
 GET http://localhost:5000/notes/user
 ###
 

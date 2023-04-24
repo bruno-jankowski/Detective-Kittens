@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends} from './database.js'
 
 
 const app = express()
@@ -15,6 +15,8 @@ console.log(currentUser);
 app.get("/currentUser", async (req, res) => {
     res.send(JSON.stringify(currentUser))
 })
+
+
 
 app.get("/logout", async (req, res) => {
     currentUser = null;
@@ -32,7 +34,7 @@ app.get("/notes/user", async (req, res) => {
     } else {
         res.status(400)
     }
-
+    
 })
 
 
@@ -61,6 +63,11 @@ app.post("/notes", async (req, res) => {
 app.get("/users", async (req, res) => {
     const users = await getUsers()
     res.send(users)
+})
+
+app.get("/friends/:user", async (req, res) => {
+    const friends = await getUserFriends(req.params.user)
+    res.send(friends)
 })
 
 app.post("/register", async (req, res) => {

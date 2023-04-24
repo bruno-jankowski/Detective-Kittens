@@ -45,6 +45,15 @@ const pool = mysql.createPool({
     return rows[0]
   }
 
+  export async function getUserFriends(username){
+    const [rows] = await pool.query(`
+    SELECT friends 
+    FROM users
+    WHERE name = ?
+    `, [username])
+    return rows[0]
+  }
+
   export async function getNote(id) {
     const [rows] = await pool.query(`
     SELECT * 
