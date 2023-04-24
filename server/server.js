@@ -70,6 +70,14 @@ app.get("/friends/:user", async (req, res) => {
     res.send(friends)
 })
 
+app.get("/friends", async (req, res) => {
+    if(currentUser){
+        const friends = await getUserFriends(currentUser)
+        return res.send(friends)
+    }
+    res.send("no user")
+})
+
 app.post("/register", async (req, res) => {
     try {
         const salt = await genSalt()
