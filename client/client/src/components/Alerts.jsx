@@ -10,7 +10,7 @@ export class Alerts extends Component {
         <>
         
         { this.props.success &&  (
-            <div class="alert alert-success" role="alert">
+            <div className="alert alert-success" role="alert">
             {this.props.text}
             </div>
         )}

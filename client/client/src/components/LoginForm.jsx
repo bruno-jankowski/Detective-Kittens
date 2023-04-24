@@ -7,7 +7,7 @@ class LoginForm extends Component {
 
     this.state = { // state then sets what will this contain and what will it affect (thing whether u nned thgis to be in the backend)
         name: '', 
-        password: '',  //i can add aditional values because the server gets only the values it needs from this.state
+        password: '',  
     };
 
 }
@@ -39,7 +39,6 @@ render() {
 const {name, password} = this.state // i need to destructure my state here so i can use it in html components
 return (
     <div className='my-5'>
-        
         <form onSubmit={this.submitHandler} className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
             <h2> Login to your account </h2>
             <div>
