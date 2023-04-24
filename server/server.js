@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends} from './database.js'
 
 
 const app = express()
@@ -68,6 +68,16 @@ app.get("/users", async (req, res) => {
 app.get("/friends/:user", async (req, res) => {
     const friends = await getUserFriends(req.params.user)
     res.send(friends)
+})
+
+app.post("/friends/:user", async (req, res) => {
+    if(currentUser){
+        await addUserFriends(currentUser, req.params.user)
+        res.send("success")
+    }
+    else{
+        console.log('no user');
+    }
 })
 
 app.get("/friends", async (req, res) => {

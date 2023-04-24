@@ -20,7 +20,7 @@ CREATE TABLE users (
   id integer PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   password TEXT NOT NULL
-  
+
 );
 
 INSERT INTO users (name, password)
@@ -36,3 +36,6 @@ WHERE id='1'
 
 DELETE FROM users 
 WHERE name='bruno';
+
+
+UPDATE users SET friends = JSON_ARRAY_APPEND(friends, '$', ?) WHERE name = ?;

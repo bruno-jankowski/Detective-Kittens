@@ -54,6 +54,13 @@ const pool = mysql.createPool({
     return rows[0]
   }
 
+  export async function addUserFriends(username, userfriend){
+    const [result] = await pool.query(`
+    UPDATE users SET friends = JSON_ARRAY_APPEND(friends, '$', ?) WHERE name = ?;
+    `, [userfriend, username])
+    return result
+  }
+
   export async function getNote(id) {
     const [rows] = await pool.query(`
     SELECT * 
