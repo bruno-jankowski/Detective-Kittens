@@ -3,6 +3,7 @@ import './App.css'
 import Notes from './pages/Notes'
 import Login from './pages/Login'
 import Users from './pages/Users'
+import Friends from './pages/Friends'
 import Alerts from './components/Alerts'
 import { Route, Routes, Link} from 'react-router-dom'
 import {Navigate, useNavigate} from "react-router-dom"
@@ -39,6 +40,7 @@ function App() {
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}
       <Route path='/users' element={<Users/>}/>
+      <Route path='/friends' element={<Friends/>}/>
     </Routes>
     </>
 

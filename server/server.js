@@ -71,11 +71,12 @@ app.get("/friends/:user", async (req, res) => {
 })
 
 app.get("/friends", async (req, res) => {
+    const friends = await getUserFriends(currentUser)
+    console.log(friends);
     if(currentUser){
-        const friends = await getUserFriends(currentUser)
-        return res.send(friends)
+        return res.status(200).send(friends)
     }
-    res.send("no user")
+    res.status(400)
 })
 
 app.post("/register", async (req, res) => {

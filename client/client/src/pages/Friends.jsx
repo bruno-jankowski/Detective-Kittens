@@ -2,29 +2,30 @@ import React, { useState, useEffect } from 'react'
 import AddUserButton from '../components/AddUserButton';
 
 function Users() {
-   const [users, setUsers] = useState([{}])
+   const [friends, setUsers] = useState([])
+   
    useEffect(() => {
-    fetch(`http://localhost:5000/users`).then(
+    fetch(`http://localhost:5000/friends`).then(
       response => {
         return response.json()
       } 
      ).then(
       data => {
-        setUsers(data)
+        setUsers(data.friends)
       }
       )
     }, []);
-
+    
+    console.log(friends);
     
   return (
     <div> 
-        {(typeof users === 'undefined')?(
+        {(friends.length < 1)?(
         <p> login </p>
       ): (
-        users.map((user , i) => (
+        friends.map((user , i) => (
           <div key={i}>
-          <p> {user.name} </p> 
-          <AddUserButton name={user.name}/>
+          <p> {user} </p>
           </div>
         ))
         

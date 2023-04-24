@@ -28,6 +28,9 @@ export class NavBar extends Component {
                 <Link className="nav-link active text-light" to="/"> Login</Link> 
                 </li>
                 <li className="nav-item">
+                <Link className="nav-link active text-light" to="/friends"> Friends</Link> 
+                </li>
+                <li className="nav-item">
                 { this.props.currentUser != null && <LogoutButton/>}
                 </li>
             </ul>
