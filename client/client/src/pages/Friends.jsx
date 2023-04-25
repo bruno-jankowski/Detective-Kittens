@@ -17,8 +17,6 @@ function Users() {
       )
     }, []);
     
-    console.log(friends);
-    
   return (
     <div> 
         {(friends.length < 1)?(

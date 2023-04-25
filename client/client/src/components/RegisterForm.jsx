@@ -14,7 +14,19 @@ class LoginForm extends Component {
 
 //this function handle change so it runs each time i type anything in the form so any time i click submit the state would be ready and all set 
 changeHandler = (e) => {
-  this.setState({[e.target.name]: e.target.value}) //updates the values of a state based on name so the name of the form must match the state variable name and sets it then to the value
+    const { name, value } = e.target;
+  
+    // Check if the value contains whitespace
+    if (/\s/.test(value)) {
+      alert('Value cannot contain whitespace!');
+      return;
+    }
+    
+    // Replace whitespace with underscores
+    const sanitizedValue = value.replace(/\s+/g, '_');
+  
+    // Update the state
+    this.setState({ [name]: sanitizedValue }); //updates the values of a state based on name so the name of the form must match the state variable name and sets it then to the value
 }
 
 submitHandler = (e) => {

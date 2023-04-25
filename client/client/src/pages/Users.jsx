@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AddUserButton from '../components/AddUserButton';
 
-function Users() {
+function Users(props) {
    const [users, setUsers] = useState([{}])
    useEffect(() => {
     fetch(`http://localhost:5000/users`).then(
@@ -17,7 +17,7 @@ function Users() {
 
 
     const [friends, setFriends] = useState([])
-   
+    
    useEffect(() => {
     fetch(`http://localhost:5000/friends`).then(
       response => {
@@ -32,12 +32,14 @@ function Users() {
 
     //get friends as []
     //compare them with the users.name list  
-
+    //filtering unwanted users
+    const currentUser = props.currentUser
+    console.log(currentUser);
     const active_user = users.map(user => user.name);
     console.log(active_user);
     const non_friends = active_user.filter(friend_users => !friends.includes(friend_users));
-    console.log(non_friends);
-    
+    non_friends.pop(currentUser)
+
   return (
     <div> 
         {(typeof non_friends === 'undefined')?(
