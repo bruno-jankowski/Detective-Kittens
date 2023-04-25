@@ -92,7 +92,7 @@ app.get("/friends", async (req, res) => {
 app.delete("/friends/:user", async (req, res) => {
     if(currentUser){
         await deletFriend(currentUser, req.params.user)
-        res.send("success")
+        res.send("deleted")
     }
     else{
         console.log('no user');
