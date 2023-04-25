@@ -33,9 +33,21 @@ function App() {
     setCurrentUser(response.data.name)
   }
 
+  const [mode, setMode] = useState(false)
+  const body = document.body;
+
+  const handleTheme = () => {
+    setMode(!mode)
+    if(mode == false){
+      body.style.background = 'linear-gradient(to right, #111111, #dd1818)';
+      return
+    }
+    body.style.background = 'linear-gradient(to left, #004e92, #000428)';
+  }
+
   return (
     <>
-    <NavBar currentUser={currentUser}></NavBar>
+    <NavBar currentUser={currentUser} handleTheme={handleTheme}></NavBar>
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}

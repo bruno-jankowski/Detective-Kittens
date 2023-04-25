@@ -33,8 +33,8 @@ export class NavBar extends Component {
                 { this.props.currentUser != null && ( <li> 
                    <LogoutButton/>
                 </li>)}
-                
             </ul>
+            <button onClick={this.props.handleTheme}>Mode change</button>
             <span className="navbar-text text-light">
                 DeadMan Notes
             </span>
