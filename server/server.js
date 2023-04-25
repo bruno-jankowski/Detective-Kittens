@@ -82,7 +82,6 @@ app.post("/friends/:user", async (req, res) => {
 
 app.get("/friends", async (req, res) => {
     const friends = await getUserFriends(currentUser)
-    console.log(friends);
     if(currentUser){
         return res.status(200).send(friends)
     }

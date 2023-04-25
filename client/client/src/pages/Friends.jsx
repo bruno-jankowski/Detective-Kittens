@@ -20,12 +20,12 @@ function Users() {
   return (
     <div> 
         {(friends.length < 1)?(
-        <p> login </p>
+        <p> no friends  </p>
       ): (
         friends.map((user , i) => (
           <div key={i}>
-          <p> {user} </p>
-          <DeleteUser name={user}/>
+              <p> {user} </p>
+              <DeleteUser name={user}/>
           </div>
         ))
         

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "robohash": "^1.0.4"
+  }
+}
