@@ -119,7 +119,7 @@ app.post("/register", async (req, res) => {
         res.status(201).send(user)    
 
         } catch {
-            res.status(500).send()
+            res.status(500).send("idk")
         }
     })
 

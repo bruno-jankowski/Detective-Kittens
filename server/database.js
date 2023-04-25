@@ -89,7 +89,7 @@ const pool = mysql.createPool({
 
   export async function createNote(title, contents, user) {
     const [result] = await pool.query(`
-    INSERT INTO notes (title, contents, user)
+    INSERT INTO notes (title, contents, user
     VALUES (?, ?, ?)
     `, [title, contents, user])
     const id = result.insertId
@@ -98,8 +98,8 @@ const pool = mysql.createPool({
 
   export async function createUser(name, password) {
     const [result] = await pool.query(`
-    INSERT INTO users (name, password)
-    VALUES (?, ?)
+    INSERT INTO users (name, password, friends)
+    VALUES (?, ?, '[]')
     `, [name, password])
     return result.name
   }

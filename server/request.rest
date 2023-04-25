@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "name": "bruno",
-    "password": "testowe haslo2005"
+    "password": "testowehaslo2005"
 }
 
 ###
