@@ -15,18 +15,38 @@ function Users() {
       )
     }, []);
 
+
+    const [friends, setFriends] = useState([])
+   
+   useEffect(() => {
+    fetch(`http://localhost:5000/friends`).then(
+      response => {
+        return response.json()
+      } 
+     ).then(
+      data => {
+        setFriends(data.friends)
+      }
+      )
+    }, []);
+
     //get friends as []
     //compare them with the users.name list  
+
+    const active_user = users.map(user => user.name);
+    console.log(active_user);
+    const non_friends = active_user.filter(friend_users => !friends.includes(friend_users));
+    console.log(non_friends);
     
   return (
     <div> 
-        {(typeof users === 'undefined')?(
+        {(typeof non_friends === 'undefined')?(
         <p> login </p>
       ): (
-        users.map((user , i) => (
+        non_friends.map((user , i) => (
           <div key={i}>
-          <p> {user.name} </p> 
-          <AddUserButton name={user.name}/>
+          <p> {user} </p> 
+          <AddUserButton name={user}/>
           </div>
         ))
         

@@ -2,7 +2,7 @@ GET http://localhost:5000/users
 
 ###
 
-POST http://localhost:5000/friends/misia
+DELETE http://localhost:5000/friends/user2
 
 ###
 GET http://localhost:5000/friends
@@ -42,6 +42,6 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "name": "bruno",
-    "password": "testowe haslo2005"
+    "name": "nie bruno",
+    "password": "pass"
 }

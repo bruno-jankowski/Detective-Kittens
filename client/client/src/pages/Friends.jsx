@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AddUserButton from '../components/AddUserButton';
 
 function Users() {
-   const [friends, setUsers] = useState([])
+   const [friends, setFriends] = useState([])
    
    useEffect(() => {
     fetch(`http://localhost:5000/friends`).then(
@@ -11,7 +11,7 @@ function Users() {
       } 
      ).then(
       data => {
-        setUsers(data.friends)
+        setFriends(data.friends)
       }
       )
     }, []);

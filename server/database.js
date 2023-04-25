@@ -61,6 +61,15 @@ const pool = mysql.createPool({
     return result
   }
 
+  export async function deletFriend(username, userfriend){
+    const [result] = await pool.query(`
+    UPDATE users
+    SET friends = JSON_REMOVE(friends, JSON_UNQUOTE(JSON_SEARCH(friends, 'one', ?, NULL, '$[*]')))
+    WHERE name = ?;
+    `, [userfriend, username])
+    return result
+  }
+
   export async function getNote(id) {
     const [rows] = await pool.query(`
     SELECT * 
