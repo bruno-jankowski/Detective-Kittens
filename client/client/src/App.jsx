@@ -12,7 +12,7 @@ import NavBar from './components/NavBar'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
- 
+
   useEffect(() => {
     fetch(`http://localhost:5000/currentUser`).then(
       response => response.json()

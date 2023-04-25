@@ -88,8 +88,9 @@ const pool = mysql.createPool({
   }
 
   export async function createNote(title, contents, user) {
+    console.log(title, contents, user);
     const [result] = await pool.query(`
-    INSERT INTO notes (title, contents, user
+    INSERT INTO notes (title, contents, user)
     VALUES (?, ?, ?)
     `, [title, contents, user])
     const id = result.insertId
