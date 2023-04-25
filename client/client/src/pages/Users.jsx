@@ -31,22 +31,21 @@ function Users(props) {
       )
     }, []);
 
+
     //get friends as []
     //compare them with the users.name list  
     //filtering unwanted users
+  
     const currentUser = props.currentUser
-    console.log(currentUser);
     const active_user = users.map(user => user.name);
-    console.log(active_user);
-    const non_friends = active_user.filter(friend_users => !friends.includes(friend_users));
-    non_friends.pop(currentUser)
+    let non_friends = active_user.filter(friend_users => !friends.includes(friend_users));
+    non_friends = non_friends.filter(friend_users => friend_users !== currentUser);
 
     
     const avatar = []
     non_friends.forEach(user => {
       const uniqueString = Math.floor(Math.random() * 10000).toString();
-      console.log(uniqueString);
-      avatar.push(`https://robohash.org/${uniqueString}/.png?set=set3`)
+      avatar.push(`https://robohash.org/${uniqueString}/.png?set=set4`)
     });
     console.log(avatar);
 
@@ -55,8 +54,11 @@ function Users(props) {
         {(typeof non_friends === 'undefined')?(
         <p> login </p>
       ): (
-        non_friends.map((user , i) => (
-          <div key={i} className="card  bg-dark text-light text-center p-2 w-50 my-5 mx-auto justify-content-center rounded ">
+      <div className="container text-center">
+         <div className="row">
+        {non_friends.map((user , i) => (
+          <div key={i} className="col-4">
+          <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
           <div className="card-header"><p> {user} </p> </div>
             <div className="card-body">
               <img src={avatar[i]} width={100}/>
@@ -64,7 +66,11 @@ function Users(props) {
               <AddUserButton name={user}/>
             </div>
           </div>
+          </div>
         ))
+        }
+        </div>
+        </div>
         
       )}
     
