@@ -39,7 +39,7 @@ function App() {
   const handleTheme = () => {
     setMode(!mode)
     if(mode == false){
-      body.style.background = 'linear-gradient(to right, #111111, #dd1818)';
+      body.style.background = 'linear-gradient(to right, #536976, #292e49)';
       return
     }
     body.style.background = 'linear-gradient(to left, #004e92, #000428)';

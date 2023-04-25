@@ -21,9 +21,9 @@ export class LogoutButton extends Component {
 
   render() {
     return (
-      <div >
+      <div>
         <form>
-            <button className='btn btn-danger' onClick={this.deleteHandler} > Log Out </button>
+            <button className='btn btn-danger p-1' onClick={this.deleteHandler} > Log Out </button>
         </form>
       </div>
     )
