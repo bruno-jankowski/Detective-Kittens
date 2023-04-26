@@ -99,8 +99,8 @@ const pool = mysql.createPool({
 
   export async function createUser(name, password) {
     const [result] = await pool.query(`
-    INSERT INTO users (name, password, friends)
-    VALUES (?, ?, '[]')
+    INSERT INTO users (name, password, friends, avatar)
+    VALUES (?, ?, '[]', FLOOR(RAND()*10000))
     `, [name, password])
     return result.name
   }
