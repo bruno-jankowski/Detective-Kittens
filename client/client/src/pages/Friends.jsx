@@ -46,7 +46,7 @@ function Users() {
             <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
               <div className="card-header"><p> {friend.name} </p> </div>
               <div className="card-body">
-                <img src={""} width={100}/>
+                <img src={`https://robohash.org/${friend.avatar}/.png?set=set4`} width={100}/>
                 <p> {friend.name} </p>
                 <DeleteUser name={friend.name}/>
               </div>
