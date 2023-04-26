@@ -38,16 +38,13 @@ function Users(props) {
   
     const currentUser = props.currentUser
     const active_user = users.map(user => user.name);
+    
     let non_friends = active_user.filter(friend_users => !friends.includes(friend_users));
     non_friends = non_friends.filter(friend_users => friend_users !== currentUser);
-
     
-    const avatar = []
-    non_friends.forEach(user => {
-      const uniqueString = Math.floor(Math.random() * 10000).toString();
-      avatar.push(`https://robohash.org/${uniqueString}/.png?set=set4`)
-    });
-    console.log(avatar);
+    non_friends = users.filter((user) => non_friends.includes(user.name));
+    console.log(non_friends, "fdata");
+    
 
   return (
     <div> 
@@ -59,10 +56,10 @@ function Users(props) {
         {non_friends.map((user , i) => (
           <div key={i} className="col-4">
           <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
-          <div className="card-header"><p> {user} </p> </div>
+          <div className="card-header"><p> {user.name} </p> </div>
             <div className="card-body">
-              <img src={avatar[i]} width={100}/>
-              <p> {user} </p> 
+              <img src={`https://robohash.org/${user.avatar}/.png?set=set4`} width={100}/>
+              <p> {user.name} </p> 
               <AddUserButton name={user}/>
             </div>
           </div>
