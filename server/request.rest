@@ -11,7 +11,7 @@ GET http://localhost:5000/logout
 ###
 POST http://localhost:5000/party
 ###
-GET http://localhost:5000/party/bruno_2005
+GET http://localhost:5000/party
 ###
 DELETE http://localhost:5000/friends/user1
 

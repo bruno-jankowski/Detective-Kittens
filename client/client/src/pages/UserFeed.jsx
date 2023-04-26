@@ -25,6 +25,21 @@ function UserFeed(props) {
         )
         }, []);
 
+
+    const [party, setParty] = useState(null)
+        
+    useEffect(() => {
+        fetch(`http://localhost:5000/party`).then(
+        response => response.json()
+        ).then(
+        data => {
+            setParty(data)
+        }
+        )
+        }, []);
+
+        console.log(party);
+
         const handleImageLoad = () => {
             setLoading(false);
           };
@@ -68,6 +83,25 @@ function UserFeed(props) {
                     </div>
                 </div>
             </div>
+
+            { party != null && 
+                <div className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
+                <div className="container text-center">
+                    <div className="row">
+                        <h1> Party by {party.owner}</h1>
+                    </div>
+                    <div className='row'>
+                    {party.players.map((player , i) => (
+                        <div key={i} className='col-6'> {player} </div>
+                    ))}
+                    </div>
+
+                </div>
+                </div>
+            
+            }
+                            
+
             </>
         )
          

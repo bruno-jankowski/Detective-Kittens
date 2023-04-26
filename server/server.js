@@ -187,9 +187,9 @@ app.post("/party/:user", async (req, res) => {
     }
 })
 
-app.get("/party/:user", async (req, res) => {
+app.get("/party", async (req, res) => {
     if(currentUser){
-        const party = await getParty(req.params.user)
+        const party = await getParty(currentUser)
         res.send(party)
     } else{
         res.status(500)
