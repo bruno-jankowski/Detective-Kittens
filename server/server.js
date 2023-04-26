@@ -13,7 +13,12 @@ let currentUser = null;
 console.log(currentUser);
 
 app.get("/currentUser", async (req, res) => {
-    res.send(JSON.stringify(currentUser))
+    if(currentUser){
+        const user = await getUser(currentUser)
+        res.send(user)
+    } else{
+        res.status(500)
+    }
 })
 
 

@@ -12,7 +12,7 @@ export class NavBar extends Component {
     return (
         <nav className="navbar navbar-expand-lg bg-dark">
         <div className="container-fluid">
-            <a className="navbar-brand text-light" href="/"> {this.props.currentUser} </a>
+            <a className="navbar-brand text-light" href="/myfeed"> {this.props.currentUser} </a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>

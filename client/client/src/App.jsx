@@ -9,6 +9,7 @@ import { Route, Routes, Link} from 'react-router-dom'
 import {Navigate, useNavigate} from "react-router-dom"
 
 import NavBar from './components/NavBar'
+import UserFeed from './pages/UserFeed'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -18,12 +19,11 @@ function App() {
       response => response.json()
       ).then(
       data => {
-        setCurrentUser(data)
+        console.log(data);
+        setCurrentUser(data.name)
       }
       )
     }, []);
-
-  
     
   
 
@@ -50,6 +50,7 @@ function App() {
     <NavBar currentUser={currentUser} handleTheme={handleTheme}></NavBar>
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
+      { currentUser != null ? <Route path='/myfeed' element={<UserFeed/>}/>  : (<Route path='/myfeed' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/users' element={<Users currentUser={currentUser}/>}/>  : (<Route path='/users' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/friends' element={<Friends/>}/>  : (<Route path='/friends' element={<h1> log in first </h1>}/>)}
