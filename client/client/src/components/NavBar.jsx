@@ -36,7 +36,7 @@ export class NavBar extends Component {
             </ul>
             <button className='btn btn-primary mx-3 p-1' onClick={this.props.handleTheme}>Mode change</button>
             <span className="navbar-text text-light">
-                DeadMan Notes
+                <b> Detective Kittens </b>
             </span>
             </div>
         </div>

@@ -24,7 +24,7 @@ class DeleteNote extends Component {
     return (
       <div >
         <form>
-            <button className='btn btn-danger' onClick={this.deleteHandler} > x </button>
+            <button className='btn btn-danger' onClick={this.deleteHandler} > remove Friend </button>
         </form>
       </div>
     )

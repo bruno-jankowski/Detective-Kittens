@@ -100,7 +100,7 @@ app.post("/friends/:user", async (req, res) => {
         console.log('no user');
     }
     if(friends.friends.includes(req.params.user)){
-        console.log('indcl');
+        res.status(400).send("friends already")
     }
 })
 

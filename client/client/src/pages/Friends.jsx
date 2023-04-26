@@ -43,6 +43,7 @@ function Users() {
 
         {friends_list.map((friend , i) => (
           <div key={i} className="col-4">
+            <a href={`/feed/${friend.name}`} className="text-decoration-none">
             <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
               <div className="card-header"><p> {friend.name} </p> </div>
               <div className="card-body">
@@ -51,6 +52,7 @@ function Users() {
                 <DeleteUser name={friend.name}/>
               </div>
             </div>
+            </a>
           </div>
         ))}
           </div>       
