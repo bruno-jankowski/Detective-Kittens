@@ -138,4 +138,13 @@ const pool = mysql.createPool({
     return result
   }
 
+  export async function getParty(owner) {
+    const [rows] = await pool.query(`
+    SELECT * 
+    FROM parties 
+    WHERE owner = ?
+    `, [owner])
+    return rows
+  }
+
   

@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from 'react'
 import ChangeAvatarButton from '../components/ChangeAvatarButton';
 import { useParams } from 'react-router-dom';
 import AddUserButton from '../components/AddUserButton';
+import CreateParty from '../components/CreateParty';
 
 function UserFeed(props) {
     const curentUser = props.currentUser;
@@ -41,6 +42,7 @@ function UserFeed(props) {
                     <div className="row">
                         <div className='col'>
                             <h1> {user.name} </h1>
+                            <CreateParty currentUser={curentUser}/>
                         </div>
                         <div className='col'>
                             { loadingAvatar && <h2>generating...</h2>}
