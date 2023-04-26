@@ -118,5 +118,22 @@ const pool = mysql.createPool({
     return getNote(id)
   }
 
+  ///PARTIES
+
+  export async function createParty(user) {
+    const [result] = await pool.query(`
+    INSERT INTO parties (players)
+    VALUES ('[?]')
+    `, [user])
+    return result
+  }
+
+  export async function addUserToParty(currentUser , user) {
+    console.log(title, contents, user);
+    const [result] = await pool.query(`
+    UPDATE users SET friends = JSON_ARRAY_APPEND(friends, '$', ?) WHERE name = ?;
+    `, [title, contents, user])
+    return result
+  }
 
   

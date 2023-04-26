@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar, createParty} from './database.js'
 
 
 const app = express()
@@ -168,6 +168,18 @@ app.post("/login", async (req, res) => {
     }
 
 })
+
+///PARTIES 
+app.post("/party", async (req, res) => {
+    if(currentUser){
+        const party = await createParty(currentUser)
+        res.send(party)
+    } else{
+        res.status(500)
+    }
+})
+
+
 
 app.listen(5000, () => {console.log("Server started on 5000");
 })

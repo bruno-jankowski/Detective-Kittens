@@ -23,6 +23,13 @@ CREATE TABLE users (
 
 );
 
+CREATE TABLE parties (
+  id integer PRIMARY KEY AUTO_INCREMENT,
+  players JSON
+
+);
+
+
 INSERT INTO users (name, password)
 VALUES 
 ('user1', 'pass1'),
@@ -47,3 +54,11 @@ UPDATE users SET avatar = 123 WHERE name = 'bruno_2005';
 UPDATE users
 SET friends = JSON_REMOVE(friends, JSON_UNQUOTE(JSON_SEARCH(friends, 'one', 'bruno2005', NULL, '$[*]')))
 WHERE name = bruno_2005;
+
+UPDATE parties
+SET friends = JSON_REMOVE(friends, JSON_UNQUOTE(JSON_SEARCH(friends, 'one', 'bruno2005', NULL, '$[*]')))
+WHERE name = bruno_2005;
+
+
+INSERT INTO parties (players)
+VALUES ('[?]')
