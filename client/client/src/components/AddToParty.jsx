@@ -19,7 +19,7 @@ export class AddToParty extends Component {
     }
   render() {
     return (
-      <button className='btin btn-primary' onClick={this.handleAddToParty} > Add to AddToParty</button>
+      <button className='btn btn-success' onClick={this.handleAddToParty} > add to AddToParty</button>
     )
   }
 }
