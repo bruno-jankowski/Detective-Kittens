@@ -60,7 +60,7 @@ function Users(props) {
             <div className="card-body">
               <img src={`https://robohash.org/${user.avatar}/.png?set=set4`} width={100}/>
               <p> {user.name} </p> 
-              <AddUserButton name={user}/>
+              <AddUserButton name={user.nam}/>
             </div>
           </div>
           </div>
