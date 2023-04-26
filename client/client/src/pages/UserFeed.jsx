@@ -1,9 +1,11 @@
 import React, { useState, useEffect }  from 'react'
+import ChangeAvatarButton from '../components/ChangeAvatarButton';
 
 
 function UserFeed() {
     const [currentUser, setCurrentUser] = useState(null)
     const [currentFriends, setCurrentFriends] = useState([])
+    const [loadingAvatar, setLoading] = useState(true)
 
     useEffect(() => {
         fetch(`http://localhost:5000/currentUser`).then(
@@ -15,6 +17,10 @@ function UserFeed() {
         }
         )
         }, []);
+
+        const handleImageLoad = () => {
+            setLoading(false);
+          };
 
         //latest friends added
         const latestFriends = currentFriends.slice(-4).reverse();
@@ -29,9 +35,10 @@ function UserFeed() {
                             <h1> {currentUser.name} </h1>
                         </div>
                         <div className='col'>
-                            <img width={100} src={`https://robohash.org/${currentUser.avatar}/.png?set=set4`} alt='users avatar'></img>
+                            { loadingAvatar && <h2>generating...</h2>}
+                            <img width={100} src={`https://robohash.org/${currentUser.avatar}/.png?set=set4`} alt='users avatar' onLoad={handleImageLoad}></img>
                             <br/>
-                            <button> change avatar </button>
+                            <ChangeAvatarButton/>
                         </div>
                     </div>
                     <div className='mt-3 row'>

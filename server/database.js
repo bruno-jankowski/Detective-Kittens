@@ -46,6 +46,15 @@ const pool = mysql.createPool({
     `, [name, password])
     return result.name
   }
+
+  export async function updateUserAvatar(username) {
+    const [result] = await pool.query(`
+    UPDATE users 
+    SET avatar = FLOOR(RAND()*1000)
+    WHERE name = ?;
+    `, [username])
+    return result.name
+  }
   
   ///FRIENDS ACTIONS
   export async function getUserFriends(username){

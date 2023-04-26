@@ -1,6 +1,10 @@
 GET http://localhost:5000/users
 
 ###
+
+GET http://localhost:5000/avatar
+
+###
 GET http://localhost:5000/logout
 ###
 DELETE http://localhost:5000/friends/user1

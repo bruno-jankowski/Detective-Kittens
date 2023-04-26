@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar} from './database.js'
 
 
 const app = express()
@@ -21,7 +21,14 @@ app.get("/currentUser", async (req, res) => {
     }
 })
 
-
+app.get("/avatar", async (req, res) => {
+    if(currentUser){
+        const avatar = await updateUserAvatar(currentUser)
+        res.send(avatar)
+    } else{
+        res.status(500)
+    }
+})
 
 app.get("/logout", async (req, res) => {
     currentUser = null;
