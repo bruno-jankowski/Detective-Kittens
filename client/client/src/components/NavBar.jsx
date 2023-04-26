@@ -22,6 +22,9 @@ export class NavBar extends Component {
                    <Link  className="nav-link active text-light" to="/notes"> Notes</Link> 
                 </li>)}
                 { this.props.currentUser != null && ( <li> 
+                   <Link  className="nav-link active text-light" to="/investigation"> Investigation</Link> 
+                </li>)}
+                { this.props.currentUser != null && ( <li> 
                    <Link  className="nav-link active text-light" to="/users"> users</Link> 
                 </li>)}
                 { this.props.currentUser != null && ( <li> 
