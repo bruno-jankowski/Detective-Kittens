@@ -1,18 +1,24 @@
 import React, { useState, useEffect }  from 'react'
 import ChangeAvatarButton from '../components/ChangeAvatarButton';
+import { useParams } from 'react-router-dom';
 
 
-function UserFeed() {
-    const [currentUser, setCurrentUser] = useState(null)
+function UserFeed(props) {
+    const curentUser = props.currentUser;
+    const [user, setUser] = useState(null)
     const [currentFriends, setCurrentFriends] = useState([])
     const [loadingAvatar, setLoading] = useState(true)
 
+    const params = useParams()
+    
+
     useEffect(() => {
-        fetch(`http://localhost:5000/currentUser`).then(
+        fetch(`http://localhost:5000/feed/${params.username}`).then(
         response => response.json()
         ).then(
         data => {
-            setCurrentUser(data)
+            console.log(data);
+            setUser(data)
             setCurrentFriends(data.friends)
         }
         )
@@ -22,23 +28,25 @@ function UserFeed() {
             setLoading(false);
           };
 
+
         //latest friends added
         const latestFriends = currentFriends.slice(-4).reverse();
 
+
     return (
-        (currentUser != null && 
+        (user != null && 
             <>
             <div className='bg-dark my-5 p-2 w-50 mx-auto justify-content-center rounded'>
                 <div className="container text-center">
                     <div className="row">
                         <div className='col'>
-                            <h1> {currentUser.name} </h1>
+                            <h1> {user.name} </h1>
                         </div>
                         <div className='col'>
                             { loadingAvatar && <h2>generating...</h2>}
-                            <img width={100} src={`https://robohash.org/${currentUser.avatar}/.png?set=set4`} alt='users avatar' onLoad={handleImageLoad}></img>
+                            <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar' onLoad={handleImageLoad}></img>
                             <br/>
-                            <ChangeAvatarButton/>
+                            { user.name === curentUser && <ChangeAvatarButton/>}
                         </div>
                     </div>
                     <div className='mt-3 row'>

@@ -21,6 +21,11 @@ app.get("/currentUser", async (req, res) => {
     }
 })
 
+app.get("/feed/:user", async (req, res) => {
+    const user = await getUser(req.params.user)
+    res.send(user)
+})
+
 app.get("/avatar", async (req, res) => {
     if(currentUser){
         const avatar = await updateUserAvatar(currentUser)

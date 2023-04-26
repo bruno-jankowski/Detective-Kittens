@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AddUserButton from '../components/AddUserButton';
-
+import {  Link } from 'react-router-dom'
 
 function Users(props) {
    const [users, setUsers] = useState([{}])
@@ -55,7 +55,8 @@ function Users(props) {
          <div className="row">
         {non_friends.map((user , i) => (
           <div key={i} className="col-4">
-          <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
+          <a href={`/feed/${user.name}`}>
+          <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded "  onClick={()=>{console.log(user.name);}}>
           <div className="card-header"><p> {user.name} </p> </div>
             <div className="card-body">
               <img src={`https://robohash.org/${user.avatar}/.png?set=set4`} width={100}/>
@@ -63,6 +64,7 @@ function Users(props) {
               <AddUserButton name={user.name}/>
             </div>
           </div>
+          </a>
           </div>
         ))
         }
