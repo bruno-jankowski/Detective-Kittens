@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from 'react'
 import ChangeAvatarButton from '../components/ChangeAvatarButton';
 import { useParams } from 'react-router-dom';
-
+import AddUserButton from '../components/AddUserButton';
 
 function UserFeed(props) {
     const curentUser = props.currentUser;
@@ -46,7 +46,7 @@ function UserFeed(props) {
                             { loadingAvatar && <h2>generating...</h2>}
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar' onLoad={handleImageLoad}></img>
                             <br/>
-                            { user.name === curentUser && <ChangeAvatarButton/>}
+                            { user.name === curentUser ? <ChangeAvatarButton/> : <AddUserButton name={user.name}/>}
                         </div>
                     </div>
                     <div className='mt-3 row'>

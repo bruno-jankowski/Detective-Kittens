@@ -10,7 +10,11 @@ GET http://localhost:5000/logout
 DELETE http://localhost:5000/friends/user1
 
 ###
-GET http://localhost:5000/friends
+POST http://localhost:5000/friends/bruno2005
+
+###
+###
+GET http://localhost:5000/friends/bruno_2005
 
 ###
 GET http://localhost:5000/notes/user
@@ -47,6 +51,6 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "name": "nie bruno",
+    "name": "bruno_2005",
     "password": "pass"
 }

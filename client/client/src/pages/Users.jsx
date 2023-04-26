@@ -55,12 +55,12 @@ function Users(props) {
          <div className="row">
         {non_friends.map((user , i) => (
           <div key={i} className="col-4">
-          <a href={`/feed/${user.name}`}>
+          <a href={`/feed/${user.name}`} className="text-decoration-none">
           <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded "  onClick={()=>{console.log(user.name);}}>
           <div className="card-header"><p> {user.name} </p> </div>
             <div className="card-body">
               <img src={`https://robohash.org/${user.avatar}/.png?set=set4`} width={100}/>
-              <p> {user.name} </p> 
+              <p > {user.name} </p> 
               <AddUserButton name={user.name}/>
             </div>
           </div>

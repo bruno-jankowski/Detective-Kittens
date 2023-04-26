@@ -84,16 +84,23 @@ app.get("/users", async (req, res) => {
 
 app.get("/friends/:user", async (req, res) => {
     const friends = await getUserFriends(req.params.user)
+    console.log(friends.friends);
     res.send(friends)
 })
 
 app.post("/friends/:user", async (req, res) => {
-    if(currentUser){
+    const friends = await getUserFriends(currentUser)
+    console.log(friends);
+    console.log(req.params.user);
+    if(currentUser && !friends.friends.includes(req.params.user)){
         await addUserFriends(currentUser, req.params.user)
         res.send("success")
     }
     else{
         console.log('no user');
+    }
+    if(friends.friends.includes(req.params.user)){
+        console.log('indcl');
     }
 })
 

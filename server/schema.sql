@@ -42,3 +42,8 @@ UPDATE users SET friends = JSON_ARRAY_APPEND(friends, '$', ?) WHERE name = ?;
 
 
 UPDATE users SET avatar = 123 WHERE name = 'bruno_2005';
+
+
+UPDATE users
+SET friends = JSON_REMOVE(friends, JSON_UNQUOTE(JSON_SEARCH(friends, 'one', 'bruno2005', NULL, '$[*]')))
+WHERE name = bruno_2005;
