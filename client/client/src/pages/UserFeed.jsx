@@ -57,7 +57,7 @@ function UserFeed(props) {
                     <div className="row">
                         <div className='col'>
                             <h1> {user.name} </h1>
-                            <CreateParty currentUser={curentUser}/>
+                            { party == null && <CreateParty currentUser={curentUser}/>}
                         </div>
                         <div className='col'>
                             { loadingAvatar && <h2>generating...</h2>}
@@ -83,8 +83,11 @@ function UserFeed(props) {
                     </div>
                 </div>
             </div>
-
-            { party != null && 
+            
+            { party != null && (
+                
+                <div>
+                {  user.name === curentUser && 
                 <div className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
                 <div className="container text-center">
                     <div className="row">
@@ -98,8 +101,10 @@ function UserFeed(props) {
 
                 </div>
                 </div>
-            
-            }
+                }
+                </div>
+                
+                )}
                             
 
             </>
