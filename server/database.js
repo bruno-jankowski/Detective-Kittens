@@ -13,22 +13,8 @@ const pool = mysql.createPool({
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
   }).promise()
-
-  export async function getUserNotes(user) {
-    const [rows] = await pool.query(`
-    SELECT * 
-    FROM notes
-    WHERE user = ?`, [user])
-    return rows
-  }
-
-  export async function getNotes() {
-    const [rows] = await pool.query(`
-    SELECT * 
-    FROM notes`)
-    return rows
-  }
-
+ 
+  ///USERS FUNCTIONS
   export async function getUsers(){
     const [rows] = await pool.query(`
     SELECT * 
@@ -45,6 +31,23 @@ const pool = mysql.createPool({
     return rows[0]
   }
 
+  export async function getUserNotes(user) {
+    const [rows] = await pool.query(`
+    SELECT * 
+    FROM notes
+    WHERE user = ?`, [user])
+    return rows
+  }
+
+  export async function createUser(name, password) {
+    const [result] = await pool.query(`
+    INSERT INTO users (name, password, friends, avatar)
+    VALUES (?, ?, '[]', FLOOR(RAND()*10000))
+    `, [name, password])
+    return result.name
+  }
+  
+  ///FRIENDS ACTIONS
   export async function getUserFriends(username){
     const [rows] = await pool.query(`
     SELECT friends 
@@ -61,13 +64,22 @@ const pool = mysql.createPool({
     return result
   }
 
-  export async function deletFriend(username, userfriend){
+  export async function deleteUserFriend(username, userfriend){
     const [result] = await pool.query(`
     UPDATE users
     SET friends = JSON_REMOVE(friends, JSON_UNQUOTE(JSON_SEARCH(friends, 'one', ?, NULL, '$[*]')))
     WHERE name = ?;
     `, [userfriend, username])
     return result
+  }
+
+
+  ///NOTES
+  export async function getNotes() {
+    const [rows] = await pool.query(`
+    SELECT * 
+    FROM notes`)
+    return rows
   }
 
   export async function getNote(id) {
@@ -97,12 +109,5 @@ const pool = mysql.createPool({
     return getNote(id)
   }
 
-  export async function createUser(name, password) {
-    const [result] = await pool.query(`
-    INSERT INTO users (name, password, friends, avatar)
-    VALUES (?, ?, '[]', FLOOR(RAND()*10000))
-    `, [name, password])
-    return result.name
-  }
 
   
