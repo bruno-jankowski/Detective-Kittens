@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar, createParty} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar, createParty, addUserToParty} from './database.js'
 
 
 const app = express()
@@ -90,8 +90,7 @@ app.get("/friends/:user", async (req, res) => {
 
 app.post("/friends/:user", async (req, res) => {
     const friends = await getUserFriends(currentUser)
-    console.log(friends);
-    console.log(req.params.user);
+    
     if(currentUser && !friends.friends.includes(req.params.user)){
         await addUserFriends(currentUser, req.params.user)
         res.send("success")
@@ -173,6 +172,15 @@ app.post("/login", async (req, res) => {
 app.post("/party", async (req, res) => {
     if(currentUser){
         const party = await createParty(currentUser)
+        res.send(party)
+    } else{
+        res.status(500)
+    }
+})
+
+app.post("/party/:user", async (req, res) => {
+    if(currentUser){
+        const party = await addUserToParty(currentUser, req.params.user)
         res.send(party)
     } else{
         res.status(500)

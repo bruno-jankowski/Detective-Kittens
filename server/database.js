@@ -121,18 +121,20 @@ const pool = mysql.createPool({
   ///PARTIES
 
   export async function createParty(user) {
+    console.log(user);
     const [result] = await pool.query(`
-    INSERT INTO parties (players)
-    VALUES ('[?]')
+    INSERT INTO parties (players, owner)
+    VALUES ('[]', ?)
     `, [user])
+    await addUserToParty(user, user)
     return result
   }
 
   export async function addUserToParty(currentUser , user) {
-    console.log(title, contents, user);
+    
     const [result] = await pool.query(`
-    UPDATE users SET friends = JSON_ARRAY_APPEND(friends, '$', ?) WHERE name = ?;
-    `, [title, contents, user])
+    UPDATE parties SET players = JSON_ARRAY_APPEND(players, '$', ?) WHERE owner = ?;
+    `, [user, currentUser])
     return result
   }
 
