@@ -11,6 +11,7 @@ import {Navigate, useNavigate} from "react-router-dom"
 import NavBar from './components/NavBar'
 import UserFeed from './pages/UserFeed'
 import Investigation from './pages/Investigation'
+import MyFeed from './pages/MyFeed'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -52,6 +53,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       <Route path='/feed/:username' element={<UserFeed currentUser={currentUser}/>}></Route>
+      <Route path='/myFeed' element={<MyFeed/>}></Route>
       <Route path='investigation' element={<Investigation/>}/>
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/users' element={<Users currentUser={currentUser}/>}/>  : (<Route path='/users' element={<h1> log in first </h1>}/>)}

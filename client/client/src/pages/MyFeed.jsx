@@ -5,25 +5,44 @@ import AddUserButton from '../components/AddUserButton';
 import CreateParty from '../components/CreateParty';
 import AddToParty from '../components/AddToParty';
 
-function UserFeed(props) {
-    const curentUser = props.currentUser;
-    const [user, setUser] = useState(null)
+function UserFeed() {
+    const [curentUser, setCurentUser] = useState(null)
     const [currentFriends, setCurrentFriends] = useState([])
+    const [loadingAvatar, setLoading] = useState(true)
 
     const params = useParams()
     
 
     useEffect(() => {
-        fetch(`http://localhost:5000/feed/${params.username}`).then(
+        fetch(`http://localhost:5000/currentUser`).then(
         response => response.json()
         ).then(
         data => {
             console.log(data);
-            setUser(data)
+            setCurentUser(data)
             setCurrentFriends(data.friends)
         }
         )
         }, []);
+
+
+    const [party, setParty] = useState(null)
+        
+    useEffect(() => {
+        fetch(`http://localhost:5000/party`).then(
+        response => response.json()
+        ).then(
+        data => {
+            setParty(data)
+        }
+        )
+        }, []);
+
+        console.log(party);
+
+        const handleImageLoad = () => {
+            setLoading(false);
+          };
 
 
         //latest friends added
@@ -31,18 +50,20 @@ function UserFeed(props) {
 
 
     return (
-        (user != null && 
+        (curentUser != null && 
             <>
             <div className='bg-dark my-5 p-2 w-50 mx-auto justify-content-center rounded'>
                 <div className="container text-center">
                     <div className="row">
                         <div className='col'>
-                            <h1> {user.name} </h1>
+                            <h1> {curentUser.name} </h1>
+                            { party == null && <CreateParty currentUser={curentUser}/>}
                         </div>
                         <div className='col'>
-                            <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>
+                            { loadingAvatar && <h2>generating...</h2>}
+                            <img width={100} src={`https://robohash.org/${curentUser.avatar}/.png?set=set4`} alt='users avatar' onLoad={handleImageLoad}></img>
                             <br/>
-                            <> <AddUserButton name={user.name}/> <AddToParty user={user.name}/> </>
+                            <ChangeAvatarButton/>
                         </div>
                     </div>
                     <div className='mt-3 row'>
@@ -61,7 +82,28 @@ function UserFeed(props) {
                         ))}
                     </div>
                 </div>
-            </div>                    
+            </div>
+            
+            { party != null && (
+                
+                <div>
+                <div className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
+                <div className="container text-center">
+                    <div className="row">
+                        <h1> Party by {party.owner}</h1>
+                    </div>
+                    <div className='row'>
+                    {party.players.map((player , i) => (
+                        <div key={i} className='col-6'> {player} </div>
+                    ))}
+                    </div>
+
+                </div>
+                </div>
+                </div>
+                
+                )}
+                            
 
             </>
         )
