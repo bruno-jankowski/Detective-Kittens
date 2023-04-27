@@ -142,7 +142,7 @@ const pool = mysql.createPool({
     const [rows] = await pool.query(`
     SELECT * 
     FROM parties 
-    WHERE owner = ?
+    WHERE JSON_SEARCH(players, 'one', ?) IS NOT NULL;
     `, [owner])
     return rows[0]
   }

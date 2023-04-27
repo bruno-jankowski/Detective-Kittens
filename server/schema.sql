@@ -62,3 +62,9 @@ WHERE name = bruno_2005;
 
 INSERT INTO parties (players)
 VALUES ('[?]')
+
+####
+to find party 
+
+SELECT * FROM parties WHERE JSON_SEARCH(players, 'one', 'newBruno') IS NOT NULL;
+
