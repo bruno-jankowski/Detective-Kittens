@@ -9,18 +9,20 @@ function Notes() {
         response => response.json()
         ).then(
         data => {
+          data.reverse()
           setNotes(data)
         }
         )
       }, []);
+      console.log(notes);
       
-    
     return (
-     <>
+      <>
         { notes.length > 0 && (
-            <>
+          <>
             <h1> {notes[0].user}'s feed</h1>
-            {notes.map((note, i) => (
+            <PostNote/>
+            {notes.reverse().map((note, i) => (
               <div key={i} className="card text-center p-2 w-50 mx-auto justify-content-center rounded ">
               <div className="card-header">
                 Note {i + 1}
@@ -39,7 +41,6 @@ function Notes() {
         )
         }
   
-        <PostNote/>
     </>
 )}
 
