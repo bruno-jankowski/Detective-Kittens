@@ -201,6 +201,17 @@ app.get("/party", async (req, res) => {
     }
 })
 
+app.get("/party/:user", async (req, res) => {
+    if(currentUser){
+        const party = await getParty(req.params.user)
+        console.log(party);
+        res.send(party)
+    } else{
+        res.status(500)
+    }
+})
+
+
 app.delete("/party/:id", async (req, res) => {
     if(currentUser){
         const party = await deleteParty(req.params.id)

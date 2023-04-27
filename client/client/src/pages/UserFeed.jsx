@@ -2,47 +2,52 @@ import React, { useState, useEffect }  from 'react'
 import ChangeAvatarButton from '../components/ChangeAvatarButton';
 import { useParams } from 'react-router-dom';
 import AddUserButton from '../components/AddUserButton';
+import DeleteUser from '../components/DeleteUser'
 import CreateParty from '../components/CreateParty';
 import AddToParty from '../components/AddToParty';
 
 function UserFeed(props) {
     const currentUser = props.currentUser;
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [currentFriends, setCurrentFriends] = useState([])
-
     const params = useParams()
-    
 
     useEffect(() => {
         fetch(`http://localhost:5000/feed/${params.username}`).then(
         response => response.json()
         ).then(
         data => {
-            console.log(data);
             setUser(data)
             setCurrentFriends(data.friends)
         }
         )
         }, []);
 
-    const [partner, setPartner] = useState(null)
+    const [userPartyPlayers, setUserPlayers] = useState([])
+    const [userParty, setUserParty] = useState(null)
+
+
     useEffect(() => {
-        fetch(`http://localhost:5000/party`).then(
+        fetch(`http://localhost:5000/party/${params.username}`).then(
         response => response.json()
         ).then(
         data => {
             console.log(data);
-            setPartner(data.partner)
+            setUserParty(data)
         }
-        )
+        ).catch( error => {console.log(error);})
         }, []);
 
-
+        
+        
         //latest friends added
         const latestFriends = currentFriends.slice(-4).reverse();
-        const yourFriend = currentFriends.includes(currentUser) && partner == '';
+        const yourFriend = currentFriends.includes(currentUser); //third condition user not already in party
+        const notInParty = userParty == null; //conditions to display party 
+        /*console.log(username);
+        console.log(userParty);
         console.log(yourFriend);
-        console.log(partner);
+        console.log(userPartyPlayers);*/
         
 
     return (
@@ -57,7 +62,15 @@ function UserFeed(props) {
                         <div className='col'>
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>
                             <br/>
-                            <> <AddUserButton name={user.name}/> { yourFriend && <AddToParty user={user.name}/> } </>
+                            <> { !yourFriend ? (<AddUserButton name={user.name}/>):(
+                                <> 
+                                    <DeleteUser name={user.name}/>
+                                    <div>
+                                        { notInParty && <AddToParty user={user.name}/>}
+                                    </div>
+                                </>
+                            )}  
+                            </>
                         </div>
                     </div>
                     <div className='mt-3 row'>

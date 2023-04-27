@@ -153,12 +153,12 @@ const pool = mysql.createPool({
     return result
   }
 
-  export async function getParty(owner) {
+  export async function getParty(user) {
     const [rows] = await pool.query(`
-    SELECT * 
-    FROM parties 
-    WHERE owner = ?
-    `, [owner])
+    SELECT * FROM parties 
+    WHERE JSON_SEARCH(players, 'one', ?) IS NOT NULL;
+    `, [user])
+    console.log(rows[0]);
     return rows[0]
   }
 
