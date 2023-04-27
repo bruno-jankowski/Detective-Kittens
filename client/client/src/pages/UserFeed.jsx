@@ -25,21 +25,25 @@ function UserFeed(props) {
         )
         }, []);
 
+    const [partner, setPartner] = useState(null)
+    useEffect(() => {
+        fetch(`http://localhost:5000/party`).then(
+        response => response.json()
+        ).then(
+        data => {
+            console.log(data);
+            setPartner(data.partner)
+        }
+        )
+        }, []);
+
 
         //latest friends added
         const latestFriends = currentFriends.slice(-4).reverse();
-        const yourFriend = currentFriends.includes(currentUser);
+        const yourFriend = currentFriends.includes(currentUser) && partner == '';
         console.log(yourFriend);
-
-        const [partner, setPartner] = useState(null)
-        const handleAddPartner = () =>{
-            if(partner == null){
-                setPartner(user.name)
-            }else{
-                console.log('we have partner');
-            }
-        } 
         console.log(partner);
+        
 
     return (
         (user != null && 
@@ -53,7 +57,7 @@ function UserFeed(props) {
                         <div className='col'>
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>
                             <br/>
-                            <> <AddUserButton name={user.name}/> { yourFriend && <AddToParty handleAddPartner={handleAddPartner} user={user.name}/> } </>
+                            <> <AddUserButton name={user.name}/> { yourFriend && <AddToParty user={user.name}/> } </>
                         </div>
                     </div>
                     <div className='mt-3 row'>

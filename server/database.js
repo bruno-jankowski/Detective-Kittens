@@ -142,6 +142,7 @@ const pool = mysql.createPool({
     const [result] = await pool.query(`
     UPDATE parties SET partner = ? WHERE owner = ?;
     `, [user, currentUser])
+    await addUserToParty(currentUser, user)
     return result
   }
 

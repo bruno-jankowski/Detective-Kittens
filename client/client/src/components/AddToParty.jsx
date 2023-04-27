@@ -11,7 +11,6 @@ export class AddToParty extends Component {
         axios.post(`http://localhost:5000/party/${this.props.user}`)
         .then(response => {
             console.log(response);
-            this.props.handleAddPartner()
             window.location.reload()
         })
         .catch(error => {
