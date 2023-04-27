@@ -31,6 +31,16 @@ function UserFeed(props) {
         const yourFriend = currentFriends.includes(currentUser);
         console.log(yourFriend);
 
+        const [partner, setPartner] = useState(null)
+        const handleAddPartner = () =>{
+            if(partner == null){
+                setPartner(user.name)
+            }else{
+                console.log('we have partner');
+            }
+        } 
+        console.log(partner);
+
     return (
         (user != null && 
             <>
@@ -43,7 +53,7 @@ function UserFeed(props) {
                         <div className='col'>
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>
                             <br/>
-                            <> <AddUserButton name={user.name}/> { yourFriend && <AddToParty user={user.name}/> } </>
+                            <> <AddUserButton name={user.name}/> { yourFriend && <AddToParty handleAddPartner={handleAddPartner} user={user.name}/> } </>
                         </div>
                     </div>
                     <div className='mt-3 row'>

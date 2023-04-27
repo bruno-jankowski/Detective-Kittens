@@ -123,18 +123,32 @@ const pool = mysql.createPool({
   export async function createParty(user) {
     console.log(user);
     const [result] = await pool.query(`
-    INSERT INTO parties (players, owner)
-    VALUES ('[]', ?)
+    INSERT INTO parties (players, owner, partner)
+    VALUES ('[]', ?, '')
     `, [user])
     await addUserToParty(user, user)
     return result
   }
 
+  //for multi parties
   export async function addUserToParty(currentUser , user) {
-    
     const [result] = await pool.query(`
     UPDATE parties SET players = JSON_ARRAY_APPEND(players, '$', ?) WHERE owner = ?;
     `, [user, currentUser])
+    return result
+  }
+
+  export async function addPartner(currentUser , user) {
+    const [result] = await pool.query(`
+    UPDATE parties SET partner = ? WHERE owner = ?;
+    `, [user, currentUser])
+    return result
+  }
+
+  export async function getPartner(currentUser) {
+    const [result] = await pool.query(`
+    SELECT partner FROM parties WHERE owner= ?
+    `, [currentUser])
     return result
   }
 
@@ -142,7 +156,7 @@ const pool = mysql.createPool({
     const [rows] = await pool.query(`
     SELECT * 
     FROM parties 
-    WHERE JSON_SEARCH(players, 'one', ?) IS NOT NULL;
+    WHERE owner = ?
     `, [owner])
     return rows[0]
   }

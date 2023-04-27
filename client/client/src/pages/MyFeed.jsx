@@ -34,11 +34,11 @@ function UserFeed() {
         ).then(
         data => {
             setParty(data)
+            console.log(data);
         }
         )
         }, []);
 
-        console.log(party);
 
         const handleImageLoad = () => {
             setLoading(false);
