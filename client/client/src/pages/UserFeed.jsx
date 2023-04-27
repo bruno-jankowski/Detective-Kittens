@@ -6,7 +6,7 @@ import CreateParty from '../components/CreateParty';
 import AddToParty from '../components/AddToParty';
 
 function UserFeed(props) {
-    const curentUser = props.currentUser;
+    const currentUser = props.currentUser;
     const [user, setUser] = useState(null)
     const [currentFriends, setCurrentFriends] = useState([])
 
@@ -28,7 +28,8 @@ function UserFeed(props) {
 
         //latest friends added
         const latestFriends = currentFriends.slice(-4).reverse();
-
+        const yourFriend = currentFriends.includes(currentUser);
+        console.log(yourFriend);
 
     return (
         (user != null && 
@@ -42,7 +43,7 @@ function UserFeed(props) {
                         <div className='col'>
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>
                             <br/>
-                            <> <AddUserButton name={user.name}/> <AddToParty user={user.name}/> </>
+                            <> <AddUserButton name={user.name}/> { yourFriend && <AddToParty user={user.name}/> } </>
                         </div>
                     </div>
                     <div className='mt-3 row'>
