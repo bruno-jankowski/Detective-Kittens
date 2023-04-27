@@ -90,7 +90,7 @@ function UserFeed() {
                 <div className="container text-center">
                     <div className="row">
                         <div className='col-9'>
-                            <h1> Party by {party.owner}</h1>
+                            { party.name == '' ? (<h1> Party by {party.owner}</h1>) : ( <h1> {party.name} </h1>)}
                         </div>
                         <div className='col-3'>
                             {party.owner == curentUser.name ? (<DeleteParty id={party.id}/>): (<LeaveParty id={party.id} name={curentUser.name}/>)}
