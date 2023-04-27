@@ -90,7 +90,12 @@ function UserFeed() {
                 <div className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
                 <div className="container text-center">
                     <div className="row">
-                        <h1> Party by {party.owner}</h1>
+                        <div className='col-9'>
+                            <h1> Party by {party.owner}</h1>
+                        </div>
+                        <div className='col-3'>
+                            <button className='btn btn-danger' > CLOSE PARTY</button>
+                        </div>
                     </div>
                     <div className='row'>
                     {party.players.map((player , i) => (

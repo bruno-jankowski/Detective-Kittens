@@ -162,4 +162,14 @@ const pool = mysql.createPool({
     return rows[0]
   }
 
+  export async function deleteParty(id) {
+    const [rows] = await pool.query(`
+    DELETE FROM parties 
+    WHERE id = ?
+    `, [id])
+    return rows[0]
+  }
+
+
+
   
