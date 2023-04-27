@@ -93,6 +93,7 @@ app.post("/friends/:user", async (req, res) => {
     
     if(currentUser && !friends.friends.includes(req.params.user)){
         await addUserFriends(currentUser, req.params.user)
+        await addUserFriends(req.params.user, currentUser)
         res.send("success")
     }
     else{
@@ -114,6 +115,7 @@ app.get("/friends", async (req, res) => {
 app.delete("/friends/:user", async (req, res) => {
     if(currentUser){
         await deleteUserFriend(currentUser, req.params.user)
+        await deleteUserFriend(req.params.user, currentUser)
         res.send("deleted")
     }
     else{
