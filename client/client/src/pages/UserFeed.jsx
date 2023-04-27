@@ -38,17 +38,40 @@ function UserFeed(props) {
         ).catch( error => {console.log(error);})
         }, []);
 
+    
+    const [currentUserParty, setCurrentParty] = useState(null)
+    const [currentUserPartner, setCurrentPartner] = useState('')
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/party`).then(
+        response => response.json()
+        ).then(
+        data => {
+            setCurrentParty(data)
+            setCurrentPartner(data.partner)
+        }
+        )
+        }, []);
+
         
         
         //latest friends added
         const latestFriends = currentFriends.slice(-4).reverse();
         const yourFriend = currentFriends.includes(currentUser); //third condition user not already in party
-        const notInParty = userParty == null; //conditions to display party 
-        /*console.log(username);
-        console.log(userParty);
+        
+        const notInParty = userParty == null; //conditions to display party (if you have max members in your party and if you have party)
+        console.log(notInParty);
+        
+        const partyCreated = currentUserParty != null && currentUserPartner == ''
+        console.log(partyCreated, currentUserPartner, currentUserParty);
+
+        const partyIsFull = currentUserPartner != ''
+        console.log(partyIsFull);
+        //Debug
+        /*console.log(userParty);
         console.log(yourFriend);
         console.log(userPartyPlayers);*/
-        
+        //console.log(currentUserPartner);
 
     return (
         (user != null && 
@@ -65,8 +88,18 @@ function UserFeed(props) {
                             <> { !yourFriend ? (<AddUserButton name={user.name}/>):(
                                 <> 
                                     <DeleteUser name={user.name}/>
+                                    { partyCreated && 
                                     <div>
-                                        { notInParty && <AddToParty user={user.name}/>}
+                                        { notInParty ? ( <AddToParty user={user.name}/>) : (
+                                            <div> 
+                                                <p> curently in party</p>
+                                            </div>  
+                                        )}
+                                        
+                                    </div>
+                                    }
+                                    <div>
+                                        { partyIsFull && (<p> your party is full </p>)}
                                     </div>
                                 </>
                             )}  
