@@ -5,6 +5,7 @@ import AddUserButton from '../components/AddUserButton';
 import CreateParty from '../components/CreateParty';
 import AddToParty from '../components/AddToParty';
 import DeleteParty from '../components/DeleteParty';
+import LeaveParty from '../components/LeaveParty';
 
 function UserFeed() {
     const [curentUser, setCurentUser] = useState(null)
@@ -92,7 +93,7 @@ function UserFeed() {
                             <h1> Party by {party.owner}</h1>
                         </div>
                         <div className='col-3'>
-                            {party.owner == curentUser.name ? (<DeleteParty id={party.id}/>): (<p>u are not an owener {party.id}</p>)}
+                            {party.owner == curentUser.name ? (<DeleteParty id={party.id}/>): (<LeaveParty id={party.id} name={curentUser.name}/>)}
                         </div>
                     </div>
                     <div className='row'>

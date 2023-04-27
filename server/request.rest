@@ -13,7 +13,7 @@ POST http://localhost:5000/party/user1
 ###
 GET http://localhost:5000/party/bruno2005
 ###
-DELETE http://localhost:5000/party/35
+DELETE http://localhost:5000/party/32/bruno_2005
 
 ###
 POST http://localhost:5000/friends/bruno2005
