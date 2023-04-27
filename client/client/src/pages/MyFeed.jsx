@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import AddUserButton from '../components/AddUserButton';
 import CreateParty from '../components/CreateParty';
 import AddToParty from '../components/AddToParty';
+import DeleteParty from '../components/DeleteParty';
 
 function UserFeed() {
     const [curentUser, setCurentUser] = useState(null)
@@ -94,7 +95,7 @@ function UserFeed() {
                             <h1> Party by {party.owner}</h1>
                         </div>
                         <div className='col-3'>
-                            <button className='btn btn-danger' > CLOSE PARTY</button>
+                            <DeleteParty id={party.id}/>
                         </div>
                     </div>
                     <div className='row'>
