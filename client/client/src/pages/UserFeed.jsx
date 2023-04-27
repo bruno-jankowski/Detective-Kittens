@@ -23,7 +23,7 @@ function UserFeed(props) {
         )
         }, []);
 
-    const [userPartyPlayers, setUserPlayers] = useState([])
+    
     const [userParty, setUserParty] = useState(null)
 
 
@@ -60,16 +60,15 @@ function UserFeed(props) {
         const yourFriend = currentFriends.includes(currentUser); //third condition user not already in party
         
         const notInParty = userParty == null; //conditions to display party (if you have max members in your party and if you have party)
-        console.log(notInParty);
-        
+        //console.log(notInParty);
+
         const partyCreated = currentUserParty != null && currentUserPartner == ''
-        console.log(partyCreated, currentUserPartner, currentUserParty);
+        //console.log(partyCreated, currentUserPartner, currentUserParty);
 
         const partyIsFull = currentUserPartner != ''
-        console.log(partyIsFull);
+        //console.log(partyIsFull);
         //Debug
-        /*console.log(userParty);
-        console.log(yourFriend);
+        /*console.log(yourFriend);
         console.log(userPartyPlayers);*/
         //console.log(currentUserPartner);
 
@@ -92,7 +91,7 @@ function UserFeed(props) {
                                     <div>
                                         { notInParty ? ( <AddToParty user={user.name}/>) : (
                                             <div> 
-                                                <p> curently in party</p>
+                                                <p> curently in partner with <br/>{userParty.players.map((user , i) => (<span key={i}> {user} </span>))} </p>
                                             </div>  
                                         )}
                                         
