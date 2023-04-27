@@ -7,7 +7,8 @@ export class CreateParty extends Component {
 
     this.state = { // state then sets what will this contain and what will it affect (thing whether u nned thgis to be in the backend)
         partyName: '', 
-        
+        clicked: false, 
+        clickedValue: 'create party'
     };
   }
 
@@ -19,6 +20,11 @@ export class CreateParty extends Component {
     handleCreateParty = (e) => {
         e.preventDefault()
         console.log(this.state);
+        if(!this.state.clicked){
+          console.log('first click');
+          this.setState({ clicked: true});
+          this.setState({ clickedValue: 'confirm'})
+        }else{ 
         if(this.state.partyName == ''){
           axios.post(`http://localhost:5000/party`)
             .then(response => {
@@ -29,7 +35,7 @@ export class CreateParty extends Component {
                 console.log(error);
             })
         } else{
-          axios.post(`http://localhost:5000/party/${this.state.partyName}`)
+          axios.post(`http://localhost:5000/partyN/${this.state.partyName}`)
           .then(response => {
               console.log(response);
               window.location.reload()
@@ -38,18 +44,22 @@ export class CreateParty extends Component {
               console.log(error);
           })
         }
+        }
     }
   render() {
     return (
       <>
-      <div className='my-0'>
-      <form className='bg-dark p-2 w-50 mx-auto justify-content-center rounded'>
-        <button className='btn btn-success m-1' onClick={this.handleCreateParty}> create party</button>
-          <div>
-              <input type='text' className="form-control my-0" name='partyName' onChange={this.changeHandler}/>
-          </div>
-      </form>
-      </div>
+      <button className='btn btn-success m-1' onClick={this.handleCreateParty}> {this.state.clickedValue}</button>
+      { this.state.clicked && (
+        <div className='my-0'>
+          <p> give it a name (optional)</p> 
+        <form className='bg-dark p-0 w-50 mx-auto justify-content-center rounded'>
+            <div>
+                <input type='text' className="form-control my-0" name='partyName' onChange={this.changeHandler}/>
+            </div>
+        </form>
+        </div>  
+      )}
       </>
     )
   }

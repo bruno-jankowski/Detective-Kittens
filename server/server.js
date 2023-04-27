@@ -180,7 +180,7 @@ app.post("/party", async (req, res) => {
     }
 })
 
-app.post("/party/:name", async (req, res) => {
+app.post("/partyN/:name", async (req, res) => {
     if(currentUser){
         const party = await createPartyWithName(currentUser, req.params.name)
         res.send(party)
