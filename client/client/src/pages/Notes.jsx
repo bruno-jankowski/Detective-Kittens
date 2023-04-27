@@ -18,10 +18,10 @@ function Notes() {
       
     return (
       <>
+        <PostNote/>
         { notes.length > 0 && (
           <>
-            <h1> {notes[0].user}'s feed</h1>
-            <PostNote/>
+            <h1> {notes[0].user}'s notes</h1>
             {notes.reverse().map((note, i) => (
               <div key={i} className="card text-center p-2 w-50 mx-auto justify-content-center rounded ">
               <div className="card-header">

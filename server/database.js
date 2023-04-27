@@ -123,9 +123,19 @@ const pool = mysql.createPool({
   export async function createParty(user) {
     console.log(user);
     const [result] = await pool.query(`
-    INSERT INTO parties (players, owner, partner)
-    VALUES ('[]', ?, '')
+    INSERT INTO parties (players, owner, partner, name)
+    VALUES ('[]', ?, '', '')
     `, [user])
+    await addUserToParty(user, user)
+    return result
+  }
+
+  export async function createPartyWithName(user, name) {
+    console.log(user);
+    const [result] = await pool.query(`
+    INSERT INTO parties (players, owner, partner, name)
+    VALUES ('[]', ?, '', ?)
+    `, [user, name])
     await addUserToParty(user, user)
     return result
   }

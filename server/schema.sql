@@ -68,3 +68,4 @@ to find party
 
 SELECT * FROM parties WHERE JSON_SEARCH(players, 'one', 'newBruno') IS NOT NULL;
 
+ALTER TABLE parties ADD COLUMN name VARCHAR(255) NOT NULL DEFAULT '';
