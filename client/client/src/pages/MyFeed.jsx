@@ -10,8 +10,6 @@ function UserFeed() {
     const [curentUser, setCurentUser] = useState(null)
     const [currentFriends, setCurrentFriends] = useState([])
     const [loadingAvatar, setLoading] = useState(true)
-
-    const params = useParams()
     
 
     useEffect(() => {
@@ -48,7 +46,6 @@ function UserFeed() {
 
         //latest friends added
         const latestFriends = currentFriends.slice(-4).reverse();
-
 
     return (
         (curentUser != null && 
@@ -95,7 +92,7 @@ function UserFeed() {
                             <h1> Party by {party.owner}</h1>
                         </div>
                         <div className='col-3'>
-                            <DeleteParty id={party.id}/>
+                            {party.owner == curentUser.name ? (<DeleteParty id={party.id}/>): (<p>u are not an owener {party.id}</p>)}
                         </div>
                     </div>
                     <div className='row'>

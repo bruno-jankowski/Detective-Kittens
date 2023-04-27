@@ -170,6 +170,16 @@ const pool = mysql.createPool({
     return rows[0]
   }
 
+  export async function leaveParty(id, user) {
+    const [rows] = await pool.query(`
+    UPDATE parties
+    SET players = JSON_REMOVE(players, JSON_UNQUOTE(JSON_SEARCH(players, 'one', ?, NULL, '$[*]')))
+    WHERE id = ?;
+    `, [user, id])
+    return rows[0]
+  }
+
+
 
 
   

@@ -80,6 +80,9 @@ function UserFeed(props) {
                     <div className="row">
                         <div className='col'>
                             <h1> {user.name} </h1>
+                            { !notInParty && 
+                            <p> curently partner with <br/>{userParty.players.map((user , i) => (<span key={i}> {user} </span>))} </p>
+                            }      
                         </div>
                         <div className='col'>
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>
@@ -91,7 +94,7 @@ function UserFeed(props) {
                                     <div>
                                         { notInParty ? ( <AddToParty user={user.name}/>) : (
                                             <div> 
-                                                <p> curently in partner with <br/>{userParty.players.map((user , i) => (<span key={i}> {user} </span>))} </p>
+                                                <p> in party </p>
                                             </div>  
                                         )}
                                         
