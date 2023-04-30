@@ -40,6 +40,11 @@ function Users() {
       ): (
       <>
       <div className="container text-center">
+        <div className='row'>
+          <div className='col-3'>
+            <a className='btn btn-primary mx-3 mt-4' href='/requests'> Friends Requests </a>
+          </div>
+        </div>
          <div className="row">
         {friends_list.map((friend , i) => (
           <div key={i} className="col-4">

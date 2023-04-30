@@ -45,7 +45,7 @@ DELETE FROM users
 WHERE name='bruno';
 
 
-UPDATE users SET friends = JSON_ARRAY_APPEND(friends, '$', ?) WHERE name = ?;
+UPDATE users SET friends = JSON_ARRAY_APPEND(friends, '$', ?) WHERE name = ?
 
 
 UPDATE users SET avatar = 123 WHERE name = 'bruno_2005';

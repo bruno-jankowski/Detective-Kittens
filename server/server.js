@@ -92,6 +92,7 @@ app.post("/friends/:user", async (req, res) => {
     const friends = await getUserFriends(currentUser)
     
     if(currentUser && !friends.friends.includes(req.params.user)){
+        //change to addUser request also both ways
         await addUserFriends(currentUser, req.params.user)
         await addUserFriends(req.params.user, currentUser)
         res.send("success")
@@ -113,6 +114,7 @@ app.get("/friends", async (req, res) => {
 })
 
 app.delete("/friends/:user", async (req, res) => {
+    //check if the user is in friends create aother button to remove request and check which one to display in frontend 
     if(currentUser){
         await deleteUserFriend(currentUser, req.params.user)
         await deleteUserFriend(req.params.user, currentUser)
