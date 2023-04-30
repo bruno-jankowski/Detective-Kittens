@@ -21,7 +21,9 @@ function Notes() {
         <PostNote/>
         { notes.length > 0 && (
           <>
-            <h1> {notes[0].user}'s notes</h1>
+          <div className='d-flex align-items-center justify-content-center'> 
+            <h1 className="text-left p-2 w-50 mx-auto justify-content-center"> {notes[0].user}'s notes</h1>
+          </div>
             {notes.reverse().map((note, i) => (
               <div key={i} className="card text-center p-2 w-50 mx-auto justify-content-center rounded ">
               <div className="card-header">
