@@ -38,9 +38,9 @@ function Users() {
         {(friends_list.length < 1)?(
         <p> no friends  </p>
       ): (
+      <>
       <div className="container text-center">
          <div className="row">
-
         {friends_list.map((friend , i) => (
           <div key={i} className="col-4">
             <a href={`/feed/${friend.name}`} className="text-decoration-none">
@@ -57,8 +57,8 @@ function Users() {
         ))}
           </div>       
         </div>
+      </>
       )}
-    
     </div>
   )
 }
