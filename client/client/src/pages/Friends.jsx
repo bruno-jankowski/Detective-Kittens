@@ -41,9 +41,16 @@ function Users() {
       <>
       <div className="container text-center">
         <div className='row'>
+        <div className='col-9'></div>
           <div className='col-3'>
-            <a className='btn btn-primary mx-3 mt-4' href='/requests'> Friends Requests </a>
-          </div>
+          <button type="button" class="btn btn-primary position-relative   mx-3 mt-4" href='requests'>
+          Requests
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {friends.length}
+          <span class="visually-hidden">unread messages</span>
+          </span>
+          </button>
+        </div>
         </div>
          <div className="row">
         {friends_list.map((friend , i) => (
