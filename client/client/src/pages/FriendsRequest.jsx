@@ -7,7 +7,7 @@ function FriendRequest() {
    const [friends, setFriends] = useState([])
    
    useEffect(() => {
-    fetch(`http://localhost:5000/friends`).then(
+    fetch(`http://localhost:5000/requests`).then(
       response => {
         return response.json()
       } 
@@ -17,27 +17,10 @@ function FriendRequest() {
       }
       )
     }, []);
-    
-    const [users, setUsers] = useState([{}])
-   useEffect(() => {
-    fetch(`http://localhost:5000/users`).then(
-      response => {
-        return response.json()
-      } 
-     ).then(
-      data => {
-        setUsers(data)
-      }
-      )
-    }, []);
-
-    
-    const friends_list = users.filter((user) => friends.includes(user.name));
-    console.log(friends_list);
      
   return (
     <div> 
-        {(friends_list.length < 1)?(
+        {(friends.length < 1)?(
         <p> no friends  </p>
       ): (
       <>
@@ -53,7 +36,7 @@ function FriendRequest() {
         </div>
         </div>
          <div className="row">
-        {friends_list.map((friend , i) => (
+        {friends.map((friend , i) => (
           <div key={i} className="col-4">
             <a href={`/feed/${friend.name}`} className="text-decoration-none">
             <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
