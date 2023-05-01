@@ -12,120 +12,10 @@ app.use(cors());
 let currentUser = null;
 console.log(currentUser);
 
-app.get("/currentUser", async (req, res) => {
-    if(currentUser){
-        const user = await getUser(currentUser)
-        res.send(user)
-    } else{
-        res.status(500)
-    }
-})
-
-app.get("/feed/:user", async (req, res) => {
-    const user = await getUser(req.params.user)
-    res.send(user)
-})
-
-app.get("/avatar", async (req, res) => {
-    if(currentUser){
-        const avatar = await updateUserAvatar(currentUser)
-        res.send(avatar)
-    } else{
-        res.status(500)
-    }
-})
-
-app.get("/logout", async (req, res) => {
-    currentUser = null;
-})
-
-app.get("/notes", async (req, res) => {
-    const notes = await getNotes()
-    res.send(notes)
-})
-
-app.get("/notes/user", async (req, res) => {
-    if(currentUser != null){
-        const notes = await getUserNotes(currentUser)
-        res.send(notes)
-    } else {
-        res.status(400)
-    }
-    
-})
 
 
-app.get("/notes/:id", async (req, res) => {
-    const id = req.params.id
-    const note = await getNote(id)
-    res.send(note)
-})
 
-app.delete("/notes/:id", async (req, res) => {
-    const id = req.params.id
-    if(id != 'undefined'){
-        const note = await deleteNote(id)
-        res.send(note)
-    } else {
-        res.status(400)
-    }
-})
-
-app.post("/notes", async (req, res) => {
-    const {title, contents} = req.body 
-    const note = await createNote(title, contents, currentUser)
-    res.status(200).send(note)
-})
-
-app.get("/users", async (req, res) => {
-    const users = await getUsers()
-    res.send(users)
-})
-
-app.get("/friends/:user", async (req, res) => {
-    const friends = await getUserFriends(req.params.user)
-    console.log(friends.friends);
-    res.send(friends)
-})
-
-app.post("/friends/:user", async (req, res) => {
-    const friends = await getUserFriends(currentUser)
-    
-    if(currentUser && !friends.friends.includes(req.params.user)){
-        //change to addUser request also both ways
-        await addUserFriends(currentUser, req.params.user)
-        await addUserFriends(req.params.user, currentUser)
-        res.send("success")
-    }
-    else{
-        console.log('no user');
-    }
-    if(friends.friends.includes(req.params.user)){
-        res.status(400).send("friends already")
-    }
-})
-
-app.get("/friends", async (req, res) => {
-    const friends = await getUserFriends(currentUser)
-    if(currentUser){
-        return res.status(200).send(friends)
-    }
-    res.status(400)
-})
-
-app.delete("/friends/:user", async (req, res) => {
-    //check if the user is in friends create aother button to remove request and check which one to display in frontend 
-    if(currentUser){
-        await deleteUserFriend(currentUser, req.params.user)
-        await deleteUserFriend(req.params.user, currentUser)
-        res.send("deleted")
-    }
-    else{
-        console.log('no user');
-    }
-})
-
-
+//AUTHENTICATION
 app.post("/register", async (req, res) => {
     try {
         const salt = await genSalt()
@@ -171,6 +61,128 @@ app.post("/login", async (req, res) => {
     }
 
 })
+
+app.get("/logout", async (req, res) => {
+    currentUser = null;
+})
+
+//CURRENT USER
+app.get("/currentUser", async (req, res) => {
+    if(currentUser){
+        const user = await getUser(currentUser)
+        res.send(user)
+    } else{
+        res.status(500)
+    }
+})
+
+app.get("/avatar", async (req, res) => {
+    if(currentUser){
+        const avatar = await updateUserAvatar(currentUser)
+        res.send(avatar)
+    } else{
+        res.status(500)
+    }
+})
+
+//NOTES
+
+app.get("/notes", async (req, res) => {
+    const notes = await getNotes()
+    res.send(notes)
+})
+
+app.get("/notes/user", async (req, res) => {
+    if(currentUser != null){
+        const notes = await getUserNotes(currentUser)
+        res.send(notes)
+    } else {
+        res.status(400)
+    }
+    
+})
+
+
+app.get("/notes/:id", async (req, res) => {
+    const id = req.params.id
+    const note = await getNote(id)
+    res.send(note)
+})
+
+app.delete("/notes/:id", async (req, res) => {
+    const id = req.params.id
+    if(id != 'undefined'){
+        const note = await deleteNote(id)
+        res.send(note)
+    } else {
+        res.status(400)
+    }
+})
+
+app.post("/notes", async (req, res) => {
+    const {title, contents} = req.body 
+    const note = await createNote(title, contents, currentUser)
+    res.status(200).send(note)
+})
+
+//USERS
+
+app.get("/users", async (req, res) => {
+    const users = await getUsers()
+    res.send(users)
+})
+
+app.get("/feed/:user", async (req, res) => {
+    const user = await getUser(req.params.user)
+    res.send(user)
+})
+
+//FRIENDS
+
+app.get("/friends/:user", async (req, res) => {
+    const friends = await getUserFriends(req.params.user)
+    console.log(friends.friends);
+    res.send(friends)
+})
+
+app.post("/friends/:user", async (req, res) => {
+    const friends = await getUserFriends(currentUser)
+    
+    if(currentUser && !friends.friends.includes(req.params.user)){
+        //change to addUser request also both ways
+        await addUserFriends(currentUser, req.params.user)
+        await addUserFriends(req.params.user, currentUser)
+        res.send("success")
+    }
+    else{
+        console.log('no user');
+    }
+    if(friends.friends.includes(req.params.user)){
+        res.status(400).send("friends already")
+    }
+})
+
+app.get("/friends", async (req, res) => {
+    const friends = await getUserFriends(currentUser)
+    if(currentUser){
+        return res.status(200).send(friends)
+    }
+    res.status(400)
+})
+
+app.delete("/friends/:user", async (req, res) => {
+    //check if the user is in friends create aother button to remove request and check which one to display in frontend 
+    if(currentUser){
+        await deleteUserFriend(currentUser, req.params.user)
+        await deleteUserFriend(req.params.user, currentUser)
+        res.send("deleted")
+    }
+    else{
+        console.log('no user');
+    }
+})
+
+
 
 ///PARTIES 
 app.post("/party", async (req, res) => {
