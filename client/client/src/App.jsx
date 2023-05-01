@@ -12,6 +12,7 @@ import NavBar from './components/NavBar'
 import UserFeed from './pages/UserFeed'
 import Investigation from './pages/Investigation'
 import MyFeed from './pages/MyFeed'
+import FriendRequest from './pages/FriendsRequest'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -58,6 +59,7 @@ function App() {
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/users' element={<Users currentUser={currentUser}/>}/>  : (<Route path='/users' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/friends' element={<Friends/>}/>  : (<Route path='/friends' element={<h1> log in first </h1>}/>)}
+      { currentUser != null ? <Route path='/friends-requests' element={<FriendRequest/>}/>  : (<Route path='/friends-requests' element={<h1> log in first </h1>}/>)}
 
     </Routes>
     </>
