@@ -83,6 +83,9 @@ function UserFeed(props) {
                             { !notInParty && 
                             <p> curently partner with <br/>{userParty.players.map((user , i) => (<span key={i}> {user} </span>))} </p>
                             }      
+                            { !partyCreated && 
+                            <p> create party in <b>your feed </b> </p>
+                            }
                         </div>
                         <div className='col'>
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>

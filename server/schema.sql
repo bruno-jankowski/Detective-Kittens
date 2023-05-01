@@ -84,4 +84,4 @@ SET sent = JSON_REMOVE(sent, JSON_UNQUOTE(JSON_SEARCH(sent, 'one', 'new req', NU
 WHERE name = 'test';
 
 //delete all
-UPDATE users SET sent = '[]'; 
+UPDATE users SET req_recived = JSON_ARRAY();

@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar, createParty, createPartyWithName, addPartner, getParty, deleteParty, leaveParty, addRequestRecived, addRequestSent, getRequests, deleteRequestRecived, deleteRequestSent} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar, createParty, createPartyWithName, addPartner, getParty, deleteParty, leaveParty, addRequestRecived, addRequestSent, getRequests, deleteRequestRecived, deleteRequestSent, getRequestsSent} from './database.js'
 
 
 const app = express()
@@ -200,6 +200,11 @@ app.get("/friends-requests", async (req, res) => {
     const requests = await getRequests(currentUser)
     console.log(requests);
     res.send(requests)
+})
+
+app.get("/friends-requests-sent", async (req, res) => {
+    const requests = await getRequestsSent(currentUser)
+    return res.send(requests)   
 })
 
 

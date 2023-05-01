@@ -125,6 +125,15 @@ const pool = mysql.createPool({
     return result[0]
   }
 
+  export async function getRequestsSent(username){
+    const [result] = await pool.query(`
+    SELECT req_sent
+    FROM users
+    WHERE name = ?
+    `, [username])
+    return result[0]
+  }
+
 
   ///NOTES
   export async function getNotes() {
