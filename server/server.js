@@ -190,7 +190,7 @@ app.post("/friends-requests/:user", async (req, res) => {
 
 app.get("/friends-requests/:user", async (req, res) => {
     const requests = await getRequests(currentUser)
-    console.log(requests);
+    console.log(requests.requests);
     res.send(requests)
 })
 

@@ -13,6 +13,7 @@ function Friends() {
       } 
      ).then(
       data => {
+        console.log(data.friends);
         setFriends(data.friends)
       }
       )

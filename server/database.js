@@ -86,21 +86,21 @@ const pool = mysql.createPool({
 
   export async function addRequestRecived(username, userfriend){
     const [result] = await pool.query(`
-    UPDATE users SET requests = JSON_ARRAY_APPEND(requests, '$', ?) WHERE name = ?
+    UPDATE users SET req_recived = JSON_ARRAY_APPEND(req_recived, '$', ?) WHERE name = ?
     `, [userfriend, username])
     return result
   }
 
   export async function addRequestSent(username, userfriend){
     const [result] = await pool.query(`
-    UPDATE users SET sent = JSON_ARRAY_APPEND(sent, '$', ?) WHERE name = ?
+    UPDATE users SET req_sent = JSON_ARRAY_APPEND(req_sent, '$', ?) WHERE name = ?
     `, [userfriend, username])
     return result
   }
 
   export async function getRequests(username){
     const [result] = await pool.query(`
-    SELECT requests 
+    SELECT req_recived 
     FROM users
     WHERE name = ?
     `, [username])

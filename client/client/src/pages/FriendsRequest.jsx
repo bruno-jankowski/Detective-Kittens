@@ -4,22 +4,24 @@ import RequestButton from '../components/RequestFriendButton';
 import { Link } from 'react-router-dom';
 
 function FriendRequest(props) {
-    
+
+
    const [requests, setReq] = useState([])
    useEffect(() => {
     fetch(`http://localhost:5000/friends-requests/${props.currentUser}`).then(
-      response =>  response.json()
+      response =>  {
+        return response.json()
+      }
      ).then(
       data => {
-        console.log(data);
-        setReq(data)
-      }
+        setReq(data.requests)
+      } 
       )
     }, []);
-     
+     console.log(requests);
   return (
     <div> 
-        {(requests.length < 1)?(
+        {(requests)?(
         <p> no friends  </p>
       ): (
       <>
@@ -41,7 +43,6 @@ function FriendRequest(props) {
             <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
               <div className="card-header"><p> {request} </p> </div>
               <div className="card-body">
-                <img src={`https://robohash.org/${0}/.png?set=set4`} width={100}/>
                 <p> {request} </p>
                 <RequestButton name={request}/>
               </div>
