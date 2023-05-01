@@ -22,8 +22,8 @@ export class RequestButton extends Component {
   render() {
     return (
         <>
-        <button type="button" class="btn btn-success">add </button>
-        <button type="button" class="btn btn-danger">cancel</button>
+        <button type="button" className=" mx-2 btn btn-success">add </button>
+        <button type="button" className=" mx-2 btn btn-danger">cancel</button>
         </>
     )
   }
