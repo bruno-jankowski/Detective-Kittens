@@ -82,6 +82,22 @@ const pool = mysql.createPool({
     return result
   }
 
+  //FRIEND REQUEST 
+
+  export async function addRequestRecived(username, userfriend){
+    const [result] = await pool.query(`
+    UPDATE users SET requests = JSON_ARRAY_APPEND(requests, '$', ?) WHERE name = ?
+    `, [userfriend, username])
+    return result
+  }
+
+  export async function addRequestSent(username, userfriend){
+    const [result] = await pool.query(`
+    UPDATE users SET sent = JSON_ARRAY_APPEND(sent, '$', ?) WHERE name = ?
+    `, [userfriend, username])
+    return result
+  }
+
 
   ///NOTES
   export async function getNotes() {
