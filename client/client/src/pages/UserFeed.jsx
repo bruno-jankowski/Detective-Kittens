@@ -84,7 +84,7 @@ function UserFeed(props) {
                             <p> curently partner with <br/>{userParty.players.map((user , i) => (<span key={i}> {user} </span>))} </p>
                             }      
                             { !partyCreated && 
-                            <p> create party in <b>your feed </b> </p>
+                            <p> create party in <a href='/myFeed' className="text-decoration-none"> <b> your feed </b></a> </p>
                             }
                         </div>
                         <div className='col'>

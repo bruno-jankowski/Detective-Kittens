@@ -19,9 +19,10 @@ function FriendRequest(props) {
       )
     }, []);
      console.log(requests);
-     
+
   return (
     <div className='container text-center'> 
+    <div className="row">
       {requests.map((request , i) => (
           <div key={i} className="col-4">
             <a href={`/feed/${request}`} className="text-decoration-none">
@@ -35,6 +36,7 @@ function FriendRequest(props) {
             </a>
           </div>
         ))}
+    </div>
     </div>
   )
 }
