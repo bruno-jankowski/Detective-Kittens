@@ -188,9 +188,9 @@ app.post("/friends-requests/:user", async (req, res) => {
     res.send("done")
 })
 
-app.get("/friends-requests/:user", async (req, res) => {
+app.get("/friends-requests", async (req, res) => {
     const requests = await getRequests(currentUser)
-    console.log(requests.requests);
+    console.log(requests);
     res.send(requests)
 })
 

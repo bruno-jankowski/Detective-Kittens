@@ -67,7 +67,6 @@ function Friends() {
                 <img src={`https://robohash.org/${friend.avatar}/.png?set=set4`} width={100}/>
                 <p> {friend.name} </p>
                 <DeleteUser name={friend.name}/>
-                <RequestButton name={friend.name}/>
               </div>
             </div>
             </a>
