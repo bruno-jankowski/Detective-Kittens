@@ -32,6 +32,19 @@ function Friends() {
       )
     }, []);
 
+    const [requests, setReq] = useState([])
+    useEffect(() => {
+     fetch(`http://localhost:5000/friends-requests`).then(
+       response =>  {
+         return response.json()
+       }
+      ).then(
+       data => {
+         setReq(data.req_recived)
+       } 
+       )
+     }, []);
+
     
     const friends_list = users.filter((user) => friends.includes(user.name));
     console.log(friends_list);
@@ -47,7 +60,7 @@ function Friends() {
                 <button type="button" className="btn btn-primary position-relative   mx-3 mt-4" href='requests'>
                 Requests
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  {friends.length}
+                  {requests.length}
                 <span className="visually-hidden">unread messages</span>
                 </span>
                 </button>
@@ -55,7 +68,7 @@ function Friends() {
           </div>
         </div>
         </div>
-        
+
         {(friends_list.length < 1)?(
         <p> no friends  </p>
       ): (

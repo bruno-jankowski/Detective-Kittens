@@ -12,7 +12,7 @@ export class AddUserButton extends Component {
         axios.post(`http://localhost:5000/friends-requests/${this.props.name}`)
         .then(response => {
             console.log(response);
-            window.location.reload()
+            window.location.href = '/users'
         })
         .catch(error => {
             console.log(error);

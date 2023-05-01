@@ -28,6 +28,19 @@ function App() {
       )
     }, []);
     
+
+    const [requests, setReq] = useState([])
+    useEffect(() => {
+     fetch(`http://localhost:5000/friends-requests`).then(
+       response =>  {
+         return response.json()
+       }
+      ).then(
+       data => {
+         setReq(data.req_recived)
+       } 
+       )
+     }, []);
   
 
   const handleLoginResponse = (response) => {
@@ -50,7 +63,7 @@ function App() {
 
   return (
     <>
-    <NavBar currentUser={currentUser} handleTheme={handleTheme}></NavBar>
+    <NavBar currentUser={currentUser} requests={requests.length} handleTheme={handleTheme}></NavBar>
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       <Route path='/feed/:username' element={<UserFeed currentUser={currentUser}/>}></Route>

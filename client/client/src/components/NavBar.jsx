@@ -28,7 +28,7 @@ export class NavBar extends Component {
                    <Link  className="nav-link active text-light" to="/users"> users</Link> 
                 </li>)}
                 { this.props.currentUser != null && ( <li> 
-                   <Link  className="nav-link active text-light" to="/friends"> friends</Link> 
+                   <Link  className="nav-link active text-light" to="/friends"> friends {this.props.requests > 0 && <b> new! </b>}</Link> 
                 </li>)}
                 <li className="nav-item">
                 <Link className="nav-link active text-light" to="/"> Login</Link> 
