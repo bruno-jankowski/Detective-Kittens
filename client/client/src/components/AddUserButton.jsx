@@ -9,7 +9,7 @@ export class AddUserButton extends Component {
 
     handleAddUser = (e) => {
         e.preventDefault()
-        axios.post(`http://localhost:5000/friends/${this.props.name}`)
+        axios.post(`http://localhost:5000/friends-requests/${this.props.name}`)
         .then(response => {
             console.log(response);
             window.location.reload()

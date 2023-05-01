@@ -38,6 +38,24 @@ function Friends() {
      
   return (
     <div> 
+
+      <div className="container text-center">
+        <div className='row'>
+        <div className='col-9'></div>
+          <div className='col-3'>
+                <Link  className="nav-link active text-light" to="/friends-requests">
+                <button type="button" className="btn btn-primary position-relative   mx-3 mt-4" href='requests'>
+                Requests
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {friends.length}
+                <span className="visually-hidden">unread messages</span>
+                </span>
+                </button>
+                </Link> 
+          </div>
+        </div>
+        </div>
+        
         {(friends_list.length < 1)?(
         <p> no friends  </p>
       ): (
@@ -46,15 +64,6 @@ function Friends() {
         <div className='row'>
         <div className='col-9'></div>
           <div className='col-3'>
-          <Link  className="nav-link active text-light" to="/friends-requests">
-          <button type="button" className="btn btn-primary position-relative   mx-3 mt-4" href='requests'>
-          Requests
-          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            {friends.length}
-          <span className="visually-hidden">unread messages</span>
-          </span>
-          </button>
-          </Link> 
         </div>
         </div>
          <div className="row">

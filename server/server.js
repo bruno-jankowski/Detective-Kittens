@@ -152,6 +152,8 @@ app.post("/friends/:user", async (req, res) => {
         //change to addUser request also both ways
         await addUserFriends(currentUser, req.params.user)
         await addUserFriends(req.params.user, currentUser)
+        await deleteRequestSent(req.params.user , currentUser)
+        await deleteRequestRecived(currentUser, req.params.user)
         res.send("success")
     }
     else{
