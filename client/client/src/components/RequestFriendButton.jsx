@@ -9,7 +9,7 @@ export class RequestButton extends Component {
 
     handleAddUser = (e) => {
         e.preventDefault()
-        axios.post(`http://localhost:5000/friends/${this.props.name}`)
+        axios.post(`http://localhost:5000/friends-requests/${this.props.name}`)
         .then(response => {
             console.log(response);
             window.location.reload()
@@ -22,7 +22,7 @@ export class RequestButton extends Component {
   render() {
     return (
         <>
-        <button type="button" className=" mx-2 btn btn-success">add </button>
+        <button type="button" className=" mx-2 btn btn-success" onClick={this.handleAddUser}> add </button>
         <button type="button" className=" mx-2 btn btn-danger">cancel</button>
         </>
     )

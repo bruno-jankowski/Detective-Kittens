@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DeleteUser from '../components/DeleteUser';
 import { Link } from 'react-router-dom';
+import RequestButton from '../components/RequestFriendButton';
 
 function Friends() {
    const [friends, setFriends] = useState([])
@@ -65,6 +66,7 @@ function Friends() {
                 <img src={`https://robohash.org/${friend.avatar}/.png?set=set4`} width={100}/>
                 <p> {friend.name} </p>
                 <DeleteUser name={friend.name}/>
+                <RequestButton name={friend.name}/>
               </div>
             </div>
             </a>

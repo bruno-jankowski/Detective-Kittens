@@ -82,3 +82,6 @@ UPDATE users SET requests = JSON_ARRAY_APPEND(requests, '$', 'new req') WHERE na
 UPDATE users
 SET sent = JSON_REMOVE(sent, JSON_UNQUOTE(JSON_SEARCH(sent, 'one', 'new req', NULL, '$[*]')))
 WHERE name = 'test';
+
+//delete all
+UPDATE users SET sent = '[]'; 

@@ -44,7 +44,7 @@ function FriendRequest() {
               <div className="card-body">
                 <img src={`https://robohash.org/${friend.avatar}/.png?set=set4`} width={100}/>
                 <p> {friend.name} </p>
-                <RequestButton/>
+                <RequestButton name={friend.name}/>
               </div>
             </div>
             </a>
