@@ -1,7 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import { genSalt, hash, compare } from 'bcrypt'
-import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar, createParty, createPartyWithName, addPartner, getParty, deleteParty, leaveParty, addRequestRecived, addRequestSent, getRequests} from './database.js'
+import {getNotes, getNote, createNote, createUser, deleteNote, getUsers, getUser, getUserNotes, getUserFriends, addUserFriends, deleteUserFriend, updateUserAvatar, createParty, createPartyWithName, addPartner, getParty, deleteParty, leaveParty, addRequestRecived, addRequestSent, getRequests, deleteRequestRecived, deleteRequestSent} from './database.js'
 
 
 const app = express()
@@ -185,6 +185,12 @@ app.delete("/friends/:user", async (req, res) => {
 app.post("/friends-requests/:user", async (req, res) => {
     await addRequestSent(currentUser, req.params.user)
     await addRequestRecived(req.params.user, currentUser)
+    res.send("done")
+})
+
+app.delete("/friends-requests/:user", async (req, res) => {
+    await deleteRequestSent(req.params.user , currentUser)
+    await deleteRequestRecived(currentUser, req.params.user)
     res.send("done")
 })
 

@@ -91,13 +91,31 @@ const pool = mysql.createPool({
     return result
   }
 
+  export async function deleteRequestRecived(username, userfriend){
+    const [result] = await pool.query(`
+    UPDATE users
+    SET req_recived = JSON_REMOVE(req_recived, JSON_UNQUOTE(JSON_SEARCH(req_recived, 'one', ?, NULL, '$[*]')))
+    WHERE name = ?;
+    `, [userfriend, username])
+    return result
+  }
+
   export async function addRequestSent(username, userfriend){
     const [result] = await pool.query(`
     UPDATE users SET req_sent = JSON_ARRAY_APPEND(req_sent, '$', ?) WHERE name = ?
     `, [userfriend, username])
     return result
   }
-
+  
+  export async function deleteRequestSent(username, userfriend){
+    const [result] = await pool.query(`
+    UPDATE users
+    SET req_sent = JSON_REMOVE(req_sent, JSON_UNQUOTE(JSON_SEARCH(req_sent, 'one', ?, NULL, '$[*]')))
+    WHERE name = ?;
+    `, [userfriend, username])
+    return result
+  }
+  
   export async function getRequests(username){
     const [result] = await pool.query(`
     SELECT req_recived 
