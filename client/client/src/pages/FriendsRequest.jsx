@@ -3,24 +3,23 @@ import DeleteUser from '../components/DeleteUser';
 import RequestButton from '../components/RequestFriendButton';
 import { Link } from 'react-router-dom';
 
-function FriendRequest() {
-   const [friends, setFriends] = useState([])
-   
+function FriendRequest(props) {
+    
+   const [requests, setReq] = useState([])
    useEffect(() => {
-    fetch(`http://localhost:5000/requests`).then(
-      response => {
-        return response.json()
-      } 
+    fetch(`http://localhost:5000/friends-requests/${props.currentUser}`).then(
+      response =>  response.json()
      ).then(
       data => {
-        setFriends(data.friends)
+        console.log(data);
+        setReq(data)
       }
       )
     }, []);
      
   return (
     <div> 
-        {(friends.length < 1)?(
+        {(requests.length < 1)?(
         <p> no friends  </p>
       ): (
       <>
@@ -36,15 +35,15 @@ function FriendRequest() {
         </div>
         </div>
          <div className="row">
-        {friends.map((friend , i) => (
+        {requests.map((request , i) => (
           <div key={i} className="col-4">
-            <a href={`/feed/${friend.name}`} className="text-decoration-none">
+            <a href={`/feed/${request}`} className="text-decoration-none">
             <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded ">
-              <div className="card-header"><p> {friend.name} </p> </div>
+              <div className="card-header"><p> {request} </p> </div>
               <div className="card-body">
-                <img src={`https://robohash.org/${friend.avatar}/.png?set=set4`} width={100}/>
-                <p> {friend.name} </p>
-                <RequestButton name={friend.name}/>
+                <img src={`https://robohash.org/${0}/.png?set=set4`} width={100}/>
+                <p> {request} </p>
+                <RequestButton name={request}/>
               </div>
             </div>
             </a>

@@ -59,7 +59,7 @@ function App() {
       { currentUser != null ? <Route path='/notes' element={<Notes/>}/>  : (<Route path='/notes' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/users' element={<Users currentUser={currentUser}/>}/>  : (<Route path='/users' element={<h1> log in first </h1>}/>)}
       { currentUser != null ? <Route path='/friends' element={<Friends/>}/>  : (<Route path='/friends' element={<h1> log in first </h1>}/>)}
-      { currentUser != null ? <Route path='/friends-requests' element={<FriendRequest/>}/>  : (<Route path='/friends-requests' element={<h1> log in first </h1>}/>)}
+      { currentUser != null ? <Route path='/friends-requests' element={<FriendRequest currentUser={currentUser}/>}/>  : (<Route path='/friends-requests' element={<h1> log in first </h1>}/>)}
 
     </Routes>
     </>

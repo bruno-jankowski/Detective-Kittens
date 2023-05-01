@@ -8,11 +8,11 @@ import DeleteParty from '../components/DeleteParty';
 import LeaveParty from '../components/LeaveParty';
 
 function UserFeed() {
-    const [curentUser, setCurentUser] = useState(null)
     const [currentFriends, setCurrentFriends] = useState([])
     const [loadingAvatar, setLoading] = useState(true)
     
-
+    
+    const [curentUser, setCurentUser] = useState(null)
     useEffect(() => {
         fetch(`http://localhost:5000/currentUser`).then(
         response => response.json()

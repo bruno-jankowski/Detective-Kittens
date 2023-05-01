@@ -98,6 +98,15 @@ const pool = mysql.createPool({
     return result
   }
 
+  export async function getRequests(username){
+    const [result] = await pool.query(`
+    SELECT requests 
+    FROM users
+    WHERE name = ?
+    `, [username])
+    return result[0]
+  }
+
 
   ///NOTES
   export async function getNotes() {
