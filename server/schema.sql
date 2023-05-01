@@ -69,3 +69,16 @@ to find party
 SELECT * FROM parties WHERE JSON_SEARCH(players, 'one', 'newBruno') IS NOT NULL;
 
 ALTER TABLE parties ADD COLUMN name VARCHAR(255) NOT NULL DEFAULT '';
+ALTER TABLE users ADD COLUMN sent VARCHAR(255) NOT NULL DEFAULT '[]';
+
+
+//new functions
+//adding reqsent
+UPDATE users SET sent = JSON_ARRAY_APPEND(sent, '$', 'new req') WHERE name = 'test';
+//ading reqrecived
+UPDATE users SET requests = JSON_ARRAY_APPEND(requests, '$', 'new req') WHERE name = 'test';
+
+//removing req
+UPDATE users
+SET sent = JSON_REMOVE(sent, JSON_UNQUOTE(JSON_SEARCH(sent, 'one', 'new req', NULL, '$[*]')))
+WHERE name = 'test';
