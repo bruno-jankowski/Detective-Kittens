@@ -68,7 +68,7 @@ function Friends() {
                 </Link>
                 ):(
                 <button type="button" className="btn btn-primary disabled position-relative mx-3 mt-4" href='requests' >
-                Requests
+                No Requests
                 </button>
                 )}
           </div>
