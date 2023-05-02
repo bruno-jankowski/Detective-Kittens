@@ -54,23 +54,40 @@ function UserFeed(props) {
         }, []);
 
         
-        
-        //latest friends added
-        const latestFriends = currentFriends.slice(-4).reverse();
-        const yourFriend = currentFriends.includes(currentUser); //third condition user not already in party
-        
-        const notInParty = userParty == null; //conditions to display party (if you have max members in your party and if you have party)
-        //console.log(notInParty);
+    const [requests, setReq] = useState([])
+    useEffect(() => {
+    fetch(`http://localhost:5000/friends-requests`).then(
+        response =>  {
+        return response.json()
+        }
+        ).then(
+        data => {
+        setReq(data.req_recived)
+        } 
+        )
+    }, []);
+    
 
-        const partyCreated = currentUserParty != null && currentUserPartner == ''
-        //console.log(partyCreated, currentUserPartner, currentUserParty);
+    //latest friends added
+    const latestFriends = currentFriends.slice(-4).reverse();
+    const yourFriend = currentFriends.includes(currentUser); //third condition user not already in party
+    
+    const notInParty = userParty == null; //conditions to display party (if you have max members in your party and if you have party)
+    //console.log(notInParty);
 
-        const partyIsFull = currentUserPartner != ''
-        //console.log(partyIsFull);
-        //Debug
-        /*console.log(yourFriend);
-        console.log(userPartyPlayers);*/
-        //console.log(currentUserPartner);
+    const partyCreated = currentUserParty != null && currentUserPartner == ''
+    //console.log(partyCreated, currentUserPartner, currentUserParty);
+
+    const partyIsFull = currentUserPartner != ''
+
+    console.log(requests, user.name);
+    const req_recived = requests.includes(user.name)
+    console.log(req_recived);
+    //console.log(partyIsFull);
+    //Debug
+    /*console.log(yourFriend);
+    console.log(userPartyPlayers);*/
+    //console.log(currentUserPartner);
 
     return (
         (user != null && 
