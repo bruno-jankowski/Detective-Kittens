@@ -5,6 +5,7 @@ import AddUserButton from '../components/AddUserButton';
 import DeleteUser from '../components/DeleteUser'
 import CreateParty from '../components/CreateParty';
 import AddToParty from '../components/AddToParty';
+import RequestButton from '../components/RequestFriendButton';
 
 function UserFeed(props) {
     const currentUser = props.currentUser;
@@ -107,7 +108,11 @@ function UserFeed(props) {
                         <div className='col'>
                             <img width={100} src={`https://robohash.org/${user.avatar}/.png?set=set4`} alt='users avatar'></img>
                             <br/>
-                            <> { !yourFriend ? (<AddUserButton name={user.name}/>):(
+                            <> { !yourFriend ? ( 
+                            <>
+                            { req_recived ? (<RequestButton name={user.name}/>) : (<AddUserButton name={user.name}/>)}
+                            </>
+                            ):(
                                 <> 
                                     <DeleteUser name={user.name}/>
                                     { partyCreated && 

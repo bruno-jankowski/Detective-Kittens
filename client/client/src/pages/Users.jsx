@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AddUserButton from '../components/AddUserButton';
 import {  Link } from 'react-router-dom'
+import RequestButton from '../components/RequestFriendButton';
 
 function Users(props) {
    const [users, setUsers] = useState([{}])
@@ -82,7 +83,7 @@ function Users(props) {
       ): (
       <div className="container text-center">
          <div className="row">
-        {newlist.map((user , i) => (
+        {final_list.map((user , i) => (
           <div key={i} className="col-4">
           <a href={`/feed/${user.name}`} className="text-decoration-none">
           <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded "  onClick={()=>{console.log(user.name);}}>
@@ -90,7 +91,9 @@ function Users(props) {
             <div className="card-body">
               <img src={`https://robohash.org/${user.avatar}/.png?set=set4`} width={100}/>
               <p > {user.name} </p> 
-              <AddUserButton name={user.name}/>
+              <>
+              { req_rec.includes(user.name) ? (<RequestButton name={user.name}/>):(<AddUserButton name={user.name}/>)} 
+              </>
             </div>
           </div>
           </a>
