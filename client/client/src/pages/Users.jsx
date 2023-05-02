@@ -44,6 +44,20 @@ function Users(props) {
       )
     }, []);
 
+  const [req_rec, setReqSent] = useState([])
+   useEffect(() => {
+     fetch(`http://localhost:5000/friends-requests`).then(
+       response =>  {
+         return response.json()
+      }
+      ).then(
+        data => {
+          setReqSent(data.req_recived)
+        } 
+      )
+    }, []);
+    console.log(req_rec);
+
 
     //get friends as []
     //compare them with the users.name list  
@@ -56,12 +70,10 @@ function Users(props) {
     non_friends = non_friends.filter(friend_users => friend_users !== currentUser);
     
     non_friends = users.filter((user) => non_friends.includes(user.name));
-    console.log(non_friends, "fdata");
 
     const final_list = non_friends.filter(item => !requests.includes(item.name));
-    console.log(final_list, "final");
-    console.log(requests);
-    
+    const newlist = final_list.filter(item => !req_rec.includes(item.name));
+    console.log("new", newlist);
 
   return (
     <div> 
@@ -70,7 +82,7 @@ function Users(props) {
       ): (
       <div className="container text-center">
          <div className="row">
-        {final_list.map((user , i) => (
+        {newlist.map((user , i) => (
           <div key={i} className="col-4">
           <a href={`/feed/${user.name}`} className="text-decoration-none">
           <div className="card  bg-dark text-light text-center p-2 my-5 mx-auto justify-content-center rounded "  onClick={()=>{console.log(user.name);}}>

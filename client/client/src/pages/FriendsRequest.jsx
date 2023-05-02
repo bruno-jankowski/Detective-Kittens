@@ -6,20 +6,19 @@ import { Link } from 'react-router-dom';
 function FriendRequest(props) {
 
 
-   const [requests, setReq] = useState([])
-   useEffect(() => {
-    fetch(`http://localhost:5000/friends-requests`).then(
-      response =>  {
-        return response.json()
-      }
-     ).then(
-      data => {
-        setReq(data.req_recived)
-      } 
-      )
-    }, []);
-     console.log(requests);
-
+  const [requests, setReq] = useState([])
+  useEffect(() => {
+   fetch(`http://localhost:5000/friends-requests`).then(
+     response =>  {
+       return response.json()
+     }
+    ).then(
+     data => {
+       setReq(data.req_recived)
+     } 
+     )
+   }, []);
+    
   return (
     <div className='container text-center'> 
     <div className="row">
