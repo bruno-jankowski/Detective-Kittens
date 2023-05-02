@@ -73,8 +73,6 @@ function Users(props) {
     non_friends = users.filter((user) => non_friends.includes(user.name));
 
     const final_list = non_friends.filter(item => !requests.includes(item.name));
-    const newlist = final_list.filter(item => !req_rec.includes(item.name));
-    console.log("new", newlist);
 
   return (
     <div> 

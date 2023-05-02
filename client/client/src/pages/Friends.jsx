@@ -59,10 +59,12 @@ function Friends() {
                 <Link  className="nav-link active text-light" to="/friends-requests">
                 <button type="button" className="btn btn-primary position-relative   mx-3 mt-4" href='requests'>
                 Requests
+                {requests.length > 0 &&
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {requests.length}
                 <span className="visually-hidden">unread messages</span>
                 </span>
+}
                 </button>
                 </Link> 
           </div>
