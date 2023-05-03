@@ -64,7 +64,7 @@ function App() {
   return (
     <>
     <NavBar currentUser={currentUser} requests={requests.length} handleTheme={handleTheme}></NavBar>
-    <Alerts success={true} text="friend added"></Alerts>
+    <Alerts display={true} text="friend added"></Alerts>
     <Routes>
       <Route path='/' element={<Login handleLoginResponse={handleLoginResponse}/>}></Route>
       <Route path='/feed/:username' element={<UserFeed currentUser={currentUser}/>}></Route>
