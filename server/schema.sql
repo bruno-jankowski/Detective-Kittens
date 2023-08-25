@@ -85,3 +85,6 @@ WHERE name = 'test';
 
 //delete all
 UPDATE users SET req_recived = JSON_ARRAY();
+
+//ADD this to new code to fix the new user bag
+UPDATE users SET req_recived = JSON_ARRAY(); where user ='newuser2';
